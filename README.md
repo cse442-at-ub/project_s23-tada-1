@@ -6,4 +6,4 @@ The one stop shop for professors, TAs, and students, serving all of your schedul
  - How to Use Figma: [link](https://docs.google.com/document/d/1EnX3DEN8PbpazkRa8YDx8J1a7bYPyorAw8GZLyZNhCw/edit?usp=sharing)
  - How to Add Files to the Departmental Server: [link](https://docs.google.com/document/d/1oGgJVLqWFKDjDrc63p3Mi5M2FVJJ5rOTx0jgYGiQRPI/edit?usp=sharing)
  
- - Figma Wireframe: [link](https://www.figma.com/file/lqElawWoJHPYSLDSFoNcgZ/CSE442-TADA-Figma?node-id=0%3A1&t=JDdt3kewsuOGoBYx-1)
+ - Figma Wireframe: [link](https://www.figma.com/file/8OFFtht0uZ5PskfMPtalfG/CSE442-TADA-FigmaFile?node-id=0%3A1&t=LZS53Hqo0ixBmclt-1)
