@@ -32,6 +32,7 @@
         }
         echo "</table>";
 	mysqli_close($conn);
+        // Sebastian: Testing that I have edit access
 ?>
 </body>
 </html>
