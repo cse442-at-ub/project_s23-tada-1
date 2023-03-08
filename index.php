@@ -12,6 +12,10 @@
   <button type="submit">Register</button>
 </form>
 
+<form method="POST" action="login.php">
+  <button type="submit">Login</button>
+</form>
+
 <?php
         $conn = mysqli_connect("oceanus", "khlam", "50338576", "cse442_2023_spring_team_p_db");
         if (mysqli_connect_errno()){
