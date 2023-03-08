@@ -8,7 +8,7 @@
 <body>
 <h1>TA Developers Asc., Ind Inc LLC</h1>
 <p>Hello World!</p>
-<a href="/CSE442-542/2023-Spring/cse-442p/register.php">register here!</a>
+<a href="register.php">register here!</a>
 
 <?php
         $conn = mysqli_connect("oceanus", "khlam", "50338576", "cse442_2023_spring_team_p_db");
