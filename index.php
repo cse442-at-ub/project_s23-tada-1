@@ -8,7 +8,9 @@
 <body>
 <h1>TA Developers Asc., Ind Inc LLC</h1>
 <p>Hello World!</p>
-<a href="register.php">register here!</a>
+<form method="POST" action="register.php">
+  <button type="submit">Register</button>
+</form>
 
 <?php
         $conn = mysqli_connect("oceanus", "khlam", "50338576", "cse442_2023_spring_team_p_db");
