@@ -8,11 +8,11 @@
 <body>
 <h1>TA Developers Asc., Ind Inc LLC</h1>
 <p>Hello World!</p>
-<form method="POST" action="register.php">
+<form method="GET" action="register.php">
   <button type="submit">Register</button>
 </form>
 
-<form method="POST" action="login.php">
+<form method="GET" action="login.php">
   <button type="submit">Login</button>
 </form>
 
