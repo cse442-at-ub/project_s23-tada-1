@@ -17,12 +17,12 @@
 </form>
 
 <?php
-        $conn = mysqli_connect("oceanus", "khlam", "50338576", "cse442_2023_spring_team_p_db");
+        $conn = mysqli_connect("oceanus.cse.buffalo.edu:3306", "khlam", "50338576", "cse442_2023_spring_team_p_db");    // Thank you for sacrificing your user info, Kelly
         if (mysqli_connect_errno()){
                 echo "Failed to connect to MySQL: " . mysqli_connect_error();
         }
 	else {
-		echo "We good";
+		echo "Database Connected";
 	}
 	$result = mysqli_query($conn, "SELECT * FROM test");
         echo "<table border='1'>
