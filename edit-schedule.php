@@ -1,32 +1,43 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Edit Schedule</title>
 
   <style>
-		table,
-		th,
-		td {
-			border: 1px solid black;
-			border-collapse: collapse;
-		}
+    table,
+    th,
+    td {
+      border: 1px solid black;
+      border-collapse: collapse;
+    }
 
-		td:nth-child(even),
-		th:nth-child(even) {
-			background-color: #ffcccc;
-		}
-	</style>
+    td:nth-child(even),
+    th:nth-child(even) {
+      background-color: #ffcccc;
+    }
+  </style>
 </head>
+
 <body>
+  <?php
+  /*
+        Starts a session
+        Starting a session stores a key on the users browser that persists until the browser is closed.
+        Session variables can then be set on the server associated with the users session and can be accessed across all pages, or multiple PHP files.
+        Very convenient system.
+    */
+  session_start();
+  ?>
   <h1>Edit Schedule</h1>
 
   <h4>Select Schedule</h4>
   <select name="select-schedule" id="select-schedule">
     <option value="select-default">Schedule</option>
     <option value="main-schedule">Main Schedule</option>
-  </select> 
+  </select>
 
   <h4>Select Action</h4>
   <select name="select-action" id="select-action">
@@ -112,4 +123,5 @@
 
   <a href="/mySchedule"><button type="button">Save Changes</button></a>
 </body>
+
 </html>
