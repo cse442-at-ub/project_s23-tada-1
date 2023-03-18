@@ -19,21 +19,19 @@
 <?php
         $conn = mysqli_connect("oceanus.cse.buffalo.edu:3306", "khlam", "50338576", "cse442_2023_spring_team_p_db");    // Thank you for sacrificing your user info, Kelly
         if (mysqli_connect_errno()){
-                echo "Failed to connect to MySQL: " . mysqli_connect_error();
+                echo "Database Status: Failed to connect: " . mysqli_connect_error();
         }
 	else {
-		echo "Database Connected";
+		echo "Database Status: Connected, we good";
 	}
-	$result = mysqli_query($conn, "SELECT * FROM test");
+	$result = mysqli_query($conn, "SELECT * FROM UserData");
         echo "<table border='1'>
                 <tr>
-                <th>Id</th>
-		<th>Name</th>
+		<th>Username</th>
                 </tr>";
         while($row = mysqli_fetch_assoc($result)){
                 echo "<tr>";
-                echo "<td>" . $row["id"] . "</td>";
-		echo "<td>" . $row["name"] . "</td>";
+                echo "<td>" . $row["Username"] . "</td>";
 		echo "</tr>";
         }
         echo "</table>";

@@ -10,13 +10,26 @@
 <?php
 $nameErr = $passwordErr = "";
 $name = $password = "";
+?>
 
+<h2> Login Page </h2>
+<form align="center" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">  
+  Username: <input type="text" name="username" value="<?php echo $name;?>">
+  <span class="error">* <?php echo $nameErr;?></span>
+  <br><br>
+  Password: <input type="password" name="password" value="<?php echo $password;?>">
+  <span class="error">* <?php echo $passwordErr;?></span>
+  <br><br>
+  <input type="submit" name="login" value="Login">  
+</form>
+
+<?php
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
   if (empty($_POST["username"])) {
       $nameErr = "Name is required";
   }
   else {
-      $name = test_input($_POST["username"]);
+      $name = clean_data($_POST["username"]);
       // check if name only contains letters and whitespace
   }
 
@@ -25,20 +38,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   }
   else {
     // Makes the password
-    $password = test_input($_POST["password"]);
-
-    //Checks if there is any uppercase, lowercase, numbers, and special characters
-    $uppercase = preg_match('@[A-Z]@', $password);
-    $lowercase = preg_match('@[a-z]@', $password);
-    $number    = preg_match('@[0-9]@', $password);
-    $specialChars = preg_match('@[^\w]@', $password);
-
-    // If it doesn't have at least one of them, return error message
-    if ($uppercase == 0 || $lowercase == 0 || $number == 0 || $specialChars == 0 || strlen($password) < 10){
-        echo 'Password should be at least 8 characters in length and should include at least one upper case letter, one number, and one special character.';
-    }
+    $password = clean_data($_POST["password"]);
   }
 
+  // Cheshire Database
+  $conn = mysqli_connect("oceanus.cse.buffalo.edu:3306", "khlam", "50338576", "cse442_2023_spring_team_p_db");
   if (mysqli_connect_errno()){
     echo "<br>Failed to connect to MySQL: " . mysqli_connect_error();
   }
@@ -46,31 +50,25 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   else {
     echo "<br>We connected to the database.";
   }
-  // Cheshire Database
-  $conn = mysqli_connect("oceanus", "khlam", "50338576", "cse442_2023_spring_team_p_db");
 
   // Local Database
   // $conn = mysqli_connect("localhost", "khlam", "Worldismine123**", "cse442testing");
 
-  // Check the database
-  // Local Database
-  //$usernameData = "SELECT Username, Password FROM test";
 
-  // Cheshire Database
-  $usernameData = "SELECT Username, Password FROM UserData";
+  // Retrieve data from database
+  $usernameData = "SELECT Username, Password FROM UserData";  
   $result_query = mysqli_query($conn, $usernameData);
+
   if (mysqli_num_rows($result_query) > 0){
     while($row = mysqli_fetch_assoc($result_query)){
       if ($row["Username"] == $name){
-        if ($row["Password"] == $password){
+        if (password_verify($password, $row["Password"])) {  // Hashes inputted password and checks against saved hash
           echo "Username and password is in the database";
+          header("Location: /index.php");
         }
         else{
-          echo "Only username is in the database";
+          echo "Password is incorrect";
         }
-      }
-      else{
-        echo "Username and password are not in the database";
       }
     }
   }
@@ -79,32 +77,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   mysqli_close($conn);
 }
 
-function test_input($data) {
+function clean_data($data) {
   $data = trim($data);
   $data = stripslashes($data);
   $data = htmlspecialchars($data);
   return $data;
 }
-
 ?>
-
-<h2> Login Page </h2>
-<form align="center" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">  
-  Username: <input type="text" name="username" value="<?php echo $name;?>">
-  <span class="error">* <?php echo $nameErr;?></span>
-  <br><br>
-  Password: <input type="text" name="password" value="<?php echo $password;?>">
-  <span class="error">* <?php echo $passwordErr;?></span>
-  <br><br>
-  <input type="submit" name="login" value="Login">  
-</form>
-
-<?php
-    echo "<center><h3>say it back:</h3></center>";
-    echo $name;
-    echo "<br><br>";
-    echo $password;
-?>
-
 </body>
 </html>
