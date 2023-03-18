@@ -72,7 +72,7 @@
             // Check password for correct length and characters
             if (test_password($password)) {
                 insert_user($name, $email, $password);
-                header("Location: /index.php");
+                header("Location: /CSE442-542/2023-Spring/cse-442p/project_s23-tada-1/index.php");
             }
         }
     }
