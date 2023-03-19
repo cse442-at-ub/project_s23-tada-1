@@ -55,9 +55,9 @@
       echo "<br>Failed to connect to MySQL: " . mysqli_connect_error();
     }
     // Print out connection to the database.
-    else {
-      echo "<br>We connected to the database.\n";
-    }
+    // else {
+    //   echo "<br>We connected to the database.\n";
+    // }
 
     // Local Database
     // $conn = mysqli_connect("localhost", "khlam", "Worldismine123**", "cse442testing");

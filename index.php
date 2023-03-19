@@ -43,9 +43,10 @@
         $conn = mysqli_connect("oceanus.cse.buffalo.edu:3306", "khlam", "50338576", "cse442_2023_spring_team_p_db");    // Thank you for sacrificing your user info, Kelly
         if (mysqli_connect_errno()) {
                 echo "Database Status: Failed to connect: " . mysqli_connect_error();
-        } else {
-                echo "Database Status: Connected, we good";
         }
+        // else {
+        //         echo "Database Status: Connected, we good";
+        // }
         $result = mysqli_query($conn, "SELECT * FROM UserData");
         echo "<table border='1'>
                 <tr>

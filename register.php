@@ -110,9 +110,9 @@
             echo "<br>Failed to connect to MySQL: " . mysqli_connect_error();
         }
         // Print out connection to the database.
-        else {
-            echo "<br>We connected to the database.";
-        }
+        // else {
+        //     echo "<br>We connected to the database.";
+        // }
 
         // Inserts it into the database. If it couldn't for some reason, it'll print out an error message
         $sql_query = "INSERT INTO UserData (Username, Email, Password) VALUES ('$name', '$email', '$hashed_password')";
