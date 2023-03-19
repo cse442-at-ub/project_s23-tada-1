@@ -75,7 +75,6 @@
           $_SESSION["username"] = $name; // Save username as session variable to be accessed on other pages
           error_log("Setting user variable");
           header("Location: /CSE442-542/2023-Spring/cse-442p/project_s23-tada-1/index.php");   // Redirect to landing page
-        } else {
           break;
         }
       }
