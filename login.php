@@ -56,7 +56,7 @@
     }
     // Print out connection to the database.
     else {
-      echo "<br>We connected to the database.";
+      echo "<br>We connected to the database.\n";
     }
 
     // Local Database
@@ -76,9 +76,10 @@
           error_log("Setting user variable");
           header("Location: /CSE442-542/2023-Spring/cse-442p/project_s23-tada-1/index.php");   // Redirect to landing page
         } else {
-          echo "Info is incorect";
+          break;
         }
       }
+      echo "Info is incorect";
     }
 
     // Closes the connection
