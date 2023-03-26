@@ -6,5 +6,5 @@ $config = include('config.php');
 $conn = mysqli_connect($config->db_address, $config->db_username, $config->db_password, $config->db_name);
 
 if (mysqli_connect_errno()) {
-    error_log("Database Status: Failed to connect: " . mysqli_connect_error());
+    console_log("Database Status: Failed to connect: " . mysqli_connect_error());
 }

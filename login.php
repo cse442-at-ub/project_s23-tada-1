@@ -29,21 +29,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		$password = clean_data($_POST["password"]);
 	}
 
-	// Retrieve data from database
-	$userData = "SELECT * FROM UserData WHERE Username = '$name'";
-	$result_query = mysqli_query($conn, $userData);
-	console_log($result_query);
-	if ($result_query == FALSE) {
-		console_log("Database error: " . mysqli_error($conn));
-	} else {
-		$row = mysqli_fetch_assoc($result_query);
-		if (password_verify($password, $row["Password"])) {
-			console_log("Verified user: '$name'");
-			$_SESSION["username"] = $name; // Save username as session variable to be accessed on other pages
-			error_log("Setting user variable");
-			header("Location: $config->root_dir/index.php");   // Redirect to landing page
+	if ($nameErr == "" && $passwordErr == "") {
+		// Retrieve data from database
+		$userData = "SELECT * FROM UserData WHERE Username = '$name'";
+		$result_query = mysqli_query($conn, $userData);
+		console_log($result_query);
+		if ($result_query == FALSE) {
+			console_log("Database error: " . mysqli_error($conn));
 		} else {
-			$generalErr = "Info is incorect";
+			$row = mysqli_fetch_assoc($result_query);
+			if (password_verify($password, $row["Password"])) {
+				console_log("Verified user: '$name'");
+				$_SESSION["username"] = $name; // Save username as session variable to be accessed on other pages
+				error_log("Setting user variable");
+				header("Location: $config->root_dir/index.php");   // Redirect to landing page
+			} else {
+				$generalErr = "Info is incorect";
+			}
 		}
 	}
 
@@ -67,7 +69,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		Password: <input type="password" name="password" value="<?php echo $password; ?>">
 		<span class="error">* <?php echo $passwordErr; ?></span>
 		<br><br>
-		<span class="error">* <?php echo $generalErr; ?></span>
+		<span class="error"><?php echo $generalErr; ?></span>
 		<br><br>
 		<input type="submit" name="login" value="Login">
 	</form>

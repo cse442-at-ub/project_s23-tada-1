@@ -1,7 +1,9 @@
 <?php
 $config = include('./backend/config.php');
+include('./backend/log.php');
 include('./backend/head.php');
 include('./backend/user.php');
+include('./backend/connection.php');
 /*
     sessions_start(): Starts a session
     Starting a session stores a key on the users browser that persists until the browser is closed.
@@ -18,34 +20,54 @@ $name = $email = $password = "";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	if (empty($_POST["username"])) {
-		$nameErr = "Name is required";
+		$nameErr = "Username is required";
+		console_log("Username not entered");
 	} else {
 		$name = clean_data($_POST["username"]);
+
+		// Checking for duplicate username
+		$statement = $conn->prepare("SELECT * FROM UserData WHERE Username = (?)");
+		$statement->bind_param('s', $name);
+		$statement->execute();
+		$result_query = $statement->get_result();;
+		console_log($result_query);
+		if (mysqli_num_rows($result_query) > 0) {
+			$nameErr = "Username is already taken";
+			$data = $result_query->fetch_assoc()['Username'];
+			console_log("Attempted login with existing username: $data");
+		}
 	}
 
 	if (empty($_POST["email"])) {
 		$emailErr = "Email is required";
+		console_log("Email not provided");
 	} else {
 		$email = clean_data($_POST["email"]);
 		// check if e-mail address is well-formed
 		if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
 			$emailErr = "Invalid email format";
+			console_log("Invalid email format");
 		}
 	}
 
 	// Checks if password was entered empty
 	if (empty($_POST["password"])) {
 		$passwordErr = "Password is required";
+		console_log("Password not provided");
 	} else {
-		// Makes the password
 		$password = clean_data($_POST["password"]);
-		// Check password for correct length and characters
-		if (test_password($password)) {
-			insert_user($name, $email, $password);
-			header("Location: $config->root_dir/index.php");
-		} else {
+		if (!test_password($password)) {
 			$passwordErr = 'Password should be at least 8 characters in length and should include at least one upper case letter, one number, and one special character.';
+			console_log("Invalid password format");
 		}
+	}
+
+
+	if ($nameErr == "" && $emailErr == "" && $passwordErr == "") {
+		// Makes the password
+		// Check password for correct length and characters
+		insert_user($name, $email, $password);
+		header("Location: $config->root_dir/index.php");
 	}
 }
 ?>

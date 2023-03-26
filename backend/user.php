@@ -14,9 +14,9 @@ function insert_user($name, $email, $password)
     // Inserts it into the database. If it couldn't for some reason, it'll print out an error message
     $sql_query = "INSERT INTO UserData (Username, Email, Password) VALUES ('$name', '$email', '$hashed_password')";
     if (mysqli_query($conn, $sql_query)) {
-        echo "<br>Has been added to the database!";
+        console_log("Successfully registered $name to database");
     } else {
-        echo "Error: " . $sql_query . "" . mysqli_error($conn);
+        console_log("Error: " . $sql_query . "" . mysqli_error($conn));
     }
 
     // Closes the connection
