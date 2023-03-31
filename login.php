@@ -31,8 +31,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 	if ($nameErr == "" && $passwordErr == "") {
 		// Retrieve data from database
-		$userData = "SELECT * FROM UserData WHERE Username = '$name'";
-		$result_query = mysqli_query($conn, $userData);
+		$statement = $conn->prepare("SELECT * FROM UserData WHERE Username = (?)");
+		$statement->bind_param('s', $name);
+		$statement->execute();
+		$result_query = $statement->get_result();
 		console_log($result_query);
 		if ($result_query == FALSE) {
 			console_log("Database error: " . mysqli_error($conn));

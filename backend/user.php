@@ -8,15 +8,16 @@
 function insert_user($name, $email, $password)
 {
     include('connection.php');
-
     // Hash password
     $hashed_password = password_hash($password, PASSWORD_BCRYPT);
     // Inserts it into the database. If it couldn't for some reason, it'll print out an error message
-    $sql_query = "INSERT INTO UserData (Username, Email, Password) VALUES ('$name', '$email', '$hashed_password')";
-    if (mysqli_query($conn, $sql_query)) {
-        console_log("Successfully registered $name to database");
+    $statement = $conn->prepare("INSERT INTO UserData (Username, Email, Password) VALUES (?, ?, ?)");
+    $statement->bind_param('sss', $name, $email, $hashed_password);
+    $statement->execute();
+    if (mysqli_error($conn)) {
+        console_log("Error: " . mysqli_error($conn));
     } else {
-        console_log("Error: " . $sql_query . "" . mysqli_error($conn));
+        console_log("Successfully registered $name to database");
     }
 
     // Closes the connection

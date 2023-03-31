@@ -1,0 +1,49 @@
+.edit-container {
+	max-width: 400px;
+	padding: 25px 50px;
+	margin: auto;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+
+	border: 2px solid black;
+	border-radius: 6px;
+}
+
+.edit-container h1 {
+	text-align: center;
+}
+
+.edit-container-inner {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+}
+
+.edit-class-list {
+	min-height: 200px;
+}
+
+.edit-class-table {
+	border: 2px solid black;
+	border-radius: 6px;
+	border-spacing: 0px;
+}
+.edit-class-table th {
+	background-color: black;
+	color: white;
+}
+
+.edit-button-container {
+	text-align: center;
+}
+.edit-save-button {
+	margin: auto;
+	background-color: rgb(47, 255, 64);
+	border: 0px;
+	border-radius: 6px;
+	padding: 10px;
+
+	color: white;
+	font-weight: bold;
+}

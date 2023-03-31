@@ -12,6 +12,12 @@ console_log("Running on " . php_sapi_name());
         Very convenient system.
 */
 session_start();
+
+$username = "";
+if (isset($_SESSION["username"]) && !empty($_SESSION["username"])) {
+	$username = $_SESSION["username"];
+	console_log("User logged in: $username");
+}
 ?>
 <!DOCTYPE html>
 <html>
@@ -32,9 +38,7 @@ session_start();
 	<div class="welcome-message">
 		<?php
 		// If user has logged in during the session, display welcome message
-		if (isset($_SESSION["username"]) && !empty($_SESSION["username"])) {
-			$username = $_SESSION["username"];
-			console_log("User logged in: $username");
+		if ($username != "") {
 			echo "Hello, $username";
 		}
 		?>
@@ -61,47 +65,61 @@ session_start();
 
 	<!-- // This is where the schedule and options are -->
 	<form method="GET" action="scheduleOptions.php">
-	<button type="submit">Options</button>
+		<button type="submit">Options</button>
 	</form>
 
 	<br>
 	<?php
 
-	function helper($item, $action){
-
-		$conn = mysqli_connect("oceanus.cse.buffalo.edu:3306", "khlam", "50338576", "cse442_2023_spring_team_p_db");
-		
-		if ($action == "insert"){
-		$sql_query = "INSERT INTO ScheduleDatabase (Item) VALUES ('$item')";
+	function helper($item, $action)
+	{
+		$statement = "";
+		include('./backend/connection.php');
+		if ($action == "insert") {
+			$statement = $conn->prepare("INSERT INTO EventData (Item) VALUES (?)");
+			$statement->bind_param('s', $item);
+		} else if ($action == "remove") {
+			$statement = $conn->prepare("DELETE FROM EventData WHERE Item=(?)");
 		}
-		else if($action == "remove"){
-		$sql_query = "DELETE FROM ScheduleDatabase WHERE Item='$item'";
-		}
 
-		mysqli_query($conn, $sql_query);
-		mysqli_close($conn);
+		if ($statement != "") {
+			$statement->bind_param('s', $item);
+			$statement->execute();
+		}
 	}
 
-	if (!empty($_GET["insert"])){
+	function displayScheduleTest($username)
+	{
+		include("./backend/connection.php");
+
+		$statement = $conn->prepare("SELECT * FROM EventData where Username = (?)");
+		if (!$statement) {
+			console_log("Error on event display: " . $conn->error);
+			return;
+		}
+		$statement->bind_param('s', $username);
+		$statement->execute();
+		$result_query = $statement->get_result();
+
+		echo "Schedule: <br>";
+		while (($event = mysqli_fetch_assoc($result_query))) {
+			echo $event;
+		}
+	}
+
+	if (!empty($_GET["insert"])) {
 		// echo "insert works";
-		helper($_GET["insert"], "insert")
-	  }
-	  else if (!empty($_GET["update_current"]) and !empty($_GET["update_new"])){
+		helper($_GET["insert"], "insert");
+	} else if (!empty($_GET["update_current"]) and !empty($_GET["update_new"])) {
 		echo "update works";
-	  }
-	  else if (!empty($_GET["remove"])){
+	} else if (!empty($_GET["remove"])) {
 		// echo "remove works";
-		helper($_GET["remove"], "remove")
-	  }
-	
-	  $conn = mysqli_connect("oceanus.cse.buffalo.edu:3306", "khlam", "50338576", "cse442_2023_spring_team_p_db");
-	  $sql_query = "SELECT Item FROM ScheduleDatabase";
-	  $schedule = mysqli_query($conn, $sql_query);
-	
-	  echo "Schedule: <br>";
-	  foreach ($schedule as $n){
-		echo "$n <br>";
-	  }
+		helper($_GET["remove"], "remove");
+	}
+
+	displayScheduleTest($username);
+
+
 	?>
 </body>
 

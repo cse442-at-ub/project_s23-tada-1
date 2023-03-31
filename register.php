@@ -29,7 +29,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		$statement = $conn->prepare("SELECT * FROM UserData WHERE Username = (?)");
 		$statement->bind_param('s', $name);
 		$statement->execute();
-		$result_query = $statement->get_result();;
+		$result_query = $statement->get_result();
 		console_log($result_query);
 		if (mysqli_num_rows($result_query) > 0) {
 			$nameErr = "Username is already taken";
