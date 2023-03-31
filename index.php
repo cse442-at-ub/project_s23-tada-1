@@ -57,6 +57,52 @@ session_start();
 	}
 	echo "</table>";
 	?>
+
+
+	<!-- // This is where the schedule and options are -->
+	<form method="GET" action="scheduleOptions.php">
+	<button type="submit">Options</button>
+	</form>
+
+	<br>
+	<?php
+
+	function helper($item, $action){
+
+		$conn = mysqli_connect("oceanus.cse.buffalo.edu:3306", "khlam", "50338576", "cse442_2023_spring_team_p_db");
+		
+		if ($action == "insert"){
+		$sql_query = "INSERT INTO ScheduleDatabase (Item) VALUES ('$item')";
+		}
+		else if($action == "remove"){
+		$sql_query = "DELETE FROM ScheduleDatabase WHERE Item='$item'";
+		}
+
+		mysqli_query($conn, $sql_query);
+		mysqli_close($conn);
+	}
+
+	if (!empty($_GET["insert"])){
+		// echo "insert works";
+		helper($_GET["insert"], "insert")
+	  }
+	  else if (!empty($_GET["update_current"]) and !empty($_GET["update_new"])){
+		echo "update works";
+	  }
+	  else if (!empty($_GET["remove"])){
+		// echo "remove works";
+		helper($_GET["remove"], "remove")
+	  }
+	
+	  $conn = mysqli_connect("oceanus.cse.buffalo.edu:3306", "khlam", "50338576", "cse442_2023_spring_team_p_db");
+	  $sql_query = "SELECT Item FROM ScheduleDatabase";
+	  $schedule = mysqli_query($conn, $sql_query);
+	
+	  echo "Schedule: <br>";
+	  foreach ($schedule as $n){
+		echo "$n <br>";
+	  }
+	?>
 </body>
 
 </html>
