@@ -24,12 +24,10 @@ session_start();
 
 		<div class="edit-container-inner">
 			<div class="edit-schedule-menu">
-				<h3>Select Event</h3>
-				<p> Click
-					<select name="select-schedule" id="select-schedule">
-						<option value="select-default">Schedule</option>
-						<option value="main-schedule">Main Schedule</option>
-					</select>
+				<p> To add a new event, press the Create Event button below. If you would like to edit or remove an existing event, click on one of your events in the list on the right.</p>
+				<div class="create-event-button-container">
+					<a href="/mySchedule.php"><button type="button" class="base-button color-button create-event-button">Create event</button></a>
+				</div>
 
 				<h3>Select Action</h3>
 				<select name="select-action" id="select-action">
@@ -46,7 +44,7 @@ session_start();
 						<th>My events</th>
 					</tr>
 
-					<tr>
+					<tr class="event-row">
 						<td>
 							<p><b>CSE 115 Recitation</b></p>
 							<p>Monday 9am</p>
@@ -56,7 +54,7 @@ session_start();
 			</div>
 		</div>
 		<div class="edit-button-container">
-			<a href="/mySchedule.php"><button type="button" class="edit-save-button">Save Changes</button></a>
+			<a href="/mySchedule.php"><button type="button" class="base-button green-button edit-save-button">Save Changes</button></a>
 		</div>
 	</div>
 

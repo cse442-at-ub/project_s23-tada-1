@@ -1,5 +1,5 @@
 .edit-container {
-	max-width: 400px;
+	max-width: 600px;
 	padding: 25px 50px;
 	margin: auto;
 	display: flex;
@@ -20,11 +20,12 @@
 	justify-content: space-around;
 }
 
-.edit-class-list {
-	min-height: 200px;
+.edit-schedule-menu {
+	max-width: 300px;
 }
 
 .edit-class-table {
+	width: 250px;
 	border: 2px solid black;
 	border-radius: 6px;
 	border-spacing: 0px;
@@ -32,18 +33,22 @@
 .edit-class-table th {
 	background-color: black;
 	color: white;
+	height: 30px;
+}
+.event-row {
+	height: 80px;
 }
 
+.create-event-button-container,
 .edit-button-container {
-	text-align: center;
+	display: flex;
+	justify-content: center;
+}
+.create-event-button {
+	padding: 10px;
 }
 .edit-save-button {
 	margin: auto;
-	background-color: rgb(47, 255, 64);
-	border: 0px;
-	border-radius: 6px;
 	padding: 10px;
-
 	color: white;
-	font-weight: bold;
 }

@@ -2,6 +2,20 @@
 	color: #ff0000;
 }
 
+/* Button classes */
+.base-button {
+	border: 0px;
+	border-radius: 6px;
+	font-weight: bold;
+}
+.color-button {
+	background-color: black;
+	color: white;
+}
+.green-button {
+	background-color: rgb(47, 255, 64);
+}
+
 h1 {
 	margin: 10px 0 40px 0;
 }
