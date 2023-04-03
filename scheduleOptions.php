@@ -1,38 +1,3 @@
-<?php
-function displayInsert()
-{
-	echo '
-	<form method="GET" action="schedule.php">
-	Insert: <input type="text" name="insert">
-	<button type="submit">Insert</button>
-	</form>
-    ';
-}
-
-function displayUpdate()
-{
-	echo '
-    <form method="GET" action="schedule.php">
-    Current: <input type="text" name="update_current">
-    New: <input type="text" name="update_new">
-    <button type="submit">Update</button>
-    </form>
-    ';
-}
-
-function displayRemove()
-{
-	echo '
-	<form method="GET" action="schedule.php">
-    Remove: <input type="text" name="remove">
-    <button type="submit">Remove</button>
-    </form>
-	';
-}
-
-?>
-
-
 <!DOCTYPE html>
 <html>
 

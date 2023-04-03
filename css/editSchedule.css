@@ -38,6 +38,9 @@
 .event-row {
 	height: 80px;
 }
+.event-list-input {
+	box-sizing: border-box;
+}
 
 .create-event-button-container,
 .edit-button-container {

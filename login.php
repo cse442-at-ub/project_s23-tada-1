@@ -1,8 +1,8 @@
 <?php
-include('./backend/connection.php');
-include('./backend/user.php');
-include('./backend/log.php');
-include('./backend/head.php');
+require('./backend/connection.php');
+require('./backend/user.php');
+require('./backend/log.php');
+require('./backend/head.php');
 /*
 	session_start(): Starts a session
 	Starting a session stores a key on the users browser that persists until the browser is closed.

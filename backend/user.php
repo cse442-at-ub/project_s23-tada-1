@@ -7,7 +7,7 @@
 */
 function insert_user($name, $email, $password)
 {
-    include('connection.php');
+    require('connection.php');
     // Hash password
     $hashed_password = password_hash($password, PASSWORD_BCRYPT);
     // Inserts it into the database. If it couldn't for some reason, it'll print out an error message

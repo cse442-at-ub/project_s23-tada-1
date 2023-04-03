@@ -1,9 +1,9 @@
 <?php
-$config = include('./backend/config.php');
-include('./backend/log.php');
-include('./backend/head.php');
-include('./backend/user.php');
-include('./backend/connection.php');
+$config = require('./backend/config.php');
+require('./backend/log.php');
+require('./backend/head.php');
+require('./backend/user.php');
+require('./backend/connection.php');
 /*
     sessions_start(): Starts a session
     Starting a session stores a key on the users browser that persists until the browser is closed.
@@ -57,7 +57,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	} else {
 		$password = clean_data($_POST["password"]);
 		if (!test_password($password)) {
-			$passwordErr = 'Password should be at least 8 characters in length and should include at least one upper case letter, one number, and one special character.';
+			$passwordErr = 'Password should be at least 8 characters in length and should require at least one upper case letter, one number, and one special character.';
 			console_log("Invalid password format");
 		}
 	}

@@ -1,5 +1,5 @@
 <?php
-$config = include('config.php');
+$config = require('config.php');
 
 // Eventually I need to figure out how to hide my password and username from users...
 // Connect to database, error if couldn't connect

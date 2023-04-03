@@ -1,12 +1,19 @@
 <?php
-include("./backend/head.php");
+require("./backend/head.php");
+require("./backend/log.php");
+require("./backend/session.php");
 /*
-        Starts a session
-        Starting a session stores a key on the users browser that persists until the browser is closed.
-        Session variables can then be set on the server associated with the users session and can be accessed across all pages, or multiple PHP files.
-        Very convenient system.
-    */
-session_start();
+	Starts a session
+	Starting a session stores a key on the users browser that persists until the browser is closed.
+	Session variables can then be set on the server associated with the users session and can be accessed across all pages, or multiple PHP files.
+	Very convenient system.
+*/
+$username = startSession();
+if ($username == "") {
+	header("Location: index.php");
+}
+
+require("./backend/editSchedulerHelper.php");
 ?>
 
 
@@ -26,7 +33,7 @@ session_start();
 			<div class="edit-schedule-menu">
 				<p> To add a new event, press the Create Event button below. If you would like to edit or remove an existing event, click on one of your events in the list on the right.</p>
 				<div class="create-event-button-container">
-					<a href="/mySchedule.php"><button type="button" class="base-button color-button create-event-button">Create event</button></a>
+					<button type="button" class="base-button color-button create-event-button">Create event</button>
 				</div>
 
 				<h3>Select Action</h3>
@@ -43,13 +50,7 @@ session_start();
 					<tr>
 						<th>My events</th>
 					</tr>
-
-					<tr class="event-row">
-						<td>
-							<p><b>CSE 115 Recitation</b></p>
-							<p>Monday 9am</p>
-						</td>
-					</tr>
+					<?php listEvents($username) ?>
 				</table>
 			</div>
 		</div>

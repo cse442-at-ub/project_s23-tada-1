@@ -1,8 +1,9 @@
 <?php
-include('./backend/connection.php');
-include('./backend/log.php');
-include('./backend/head.php');
-$config = include('./backend/config.php');
+require('./backend/connection.php');
+require('./backend/log.php');
+require('./backend/head.php');
+require('./backend/session.php');
+$config = require('./backend/config.php');
 console_log("Running on " . php_sapi_name());
 
 /*
@@ -11,14 +12,9 @@ console_log("Running on " . php_sapi_name());
         Session variables can then be set on the server associated with the users session and can be accessed across all pages, or multiple PHP files.
         Very convenient system.
 */
-session_start();
-
-$username = "";
-if (isset($_SESSION["username"]) && !empty($_SESSION["username"])) {
-	$username = $_SESSION["username"];
-	console_log("User logged in: $username");
-}
+$username = startSession();
 ?>
+
 <!DOCTYPE html>
 <html>
 
@@ -74,12 +70,12 @@ if (isset($_SESSION["username"]) && !empty($_SESSION["username"])) {
 	function helper($item, $action)
 	{
 		$statement = "";
-		include('./backend/connection.php');
+		require('./backend/connection.php');
 		if ($action == "insert") {
-			$statement = $conn->prepare("INSERT INTO EventData (Item) VALUES (?)");
+			$statement = $conn->prepare("INSERT INTO Events (Item) VALUES (?)");
 			$statement->bind_param('s', $item);
 		} else if ($action == "remove") {
-			$statement = $conn->prepare("DELETE FROM EventData WHERE Item=(?)");
+			$statement = $conn->prepare("DELETE FROM Events WHERE Item=(?)");
 		}
 
 		if ($statement != "") {
@@ -90,9 +86,9 @@ if (isset($_SESSION["username"]) && !empty($_SESSION["username"])) {
 
 	function displayScheduleTest($username)
 	{
-		include("./backend/connection.php");
+		require("./backend/connection.php");
 
-		$statement = $conn->prepare("SELECT * FROM EventData where Username = (?)");
+		$statement = $conn->prepare("SELECT * FROM Events where Username = (?)");
 		if (!$statement) {
 			console_log("Error on event display: " . $conn->error);
 			return;
@@ -103,7 +99,7 @@ if (isset($_SESSION["username"]) && !empty($_SESSION["username"])) {
 
 		echo "Schedule: <br>";
 		while (($event = mysqli_fetch_assoc($result_query))) {
-			echo $event;
+			echo json_encode($event) . "\n";
 		}
 	}
 
