@@ -78,6 +78,15 @@ $username = startSession();
 		}
 	}
 
+	function updateHelper($old, $new){
+		$conn = mysqli_connect("oceanus.cse.buffalo.edu:3306", "khlam", "50338576", "cse442_2023_spring_team_p_db");
+
+		$sql_query = "UPDATE ScheduleDatabase (Item) SET ('$new') WHERE (Item) = ('$old')";
+
+		mysqli_query($conn, $sql_query);
+		mysqli_close($conn);
+	}
+
 	function displayScheduleTest($username)
 	{
 		require("./backend/connection.php");
@@ -101,7 +110,8 @@ $username = startSession();
 		// echo "insert works";
 		helper($_GET["insert"], "insert");
 	} else if (!empty($_GET["update_current"]) and !empty($_GET["update_new"])) {
-		echo "update works";
+		// echo "update works";
+		updateHelper($_GET["update_current"], $_GET["update_new"]);
 	} else if (!empty($_GET["remove"])) {
 		// echo "remove works";
 		helper($_GET["remove"], "remove");
