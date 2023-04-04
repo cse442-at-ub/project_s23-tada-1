@@ -1,5 +1,4 @@
 <?php
-include('./backend/connection.php'); 
 
 class TypeEvent {
     public $Time;
@@ -14,6 +13,7 @@ class TypeEvent {
 
 function listDisplayEvents($username)
 {
+    include('./backend/connection.php');
     # list of all the events happening on the specific day
     $Monday = array();
     $Tuesday = array();
@@ -25,7 +25,7 @@ function listDisplayEvents($username)
     $list_return = array();
     $statement = $conn->prepare("SELECT * FROM EventData where Username = (?)");
     if (!$statement) {
-        console_log("Error on event display: " . $conn->error);
+        console_log("Error on retrieving data: " . $statement->error);
         return;
     }
     $statement->bind_param('s', $username);
