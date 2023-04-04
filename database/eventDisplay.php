@@ -6,7 +6,7 @@ class TypeEvent {
     public $EventType;
     public $Class;
     public $Description;
-}
+} 
 
 #----------This function is to help displaying the data we want onto the mySchedule.php page.----------------------------------------#
 #----------It'll return a list of lists (where Index 1 = Monday, Index 2 = Tuesday, etc.---------------------------------------------#
@@ -14,6 +14,7 @@ class TypeEvent {
 
 function listDisplayEvents($username)
 {
+    include('./backend/connection.php'); 
     # list of all the events happening on the specific day
     $Monday = array();
     $Tuesday = array();
