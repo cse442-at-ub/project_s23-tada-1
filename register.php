@@ -4,12 +4,7 @@ require('./backend/log.php');
 require('./backend/head.php');
 require('./backend/user.php');
 require('./backend/connection.php');
-/*
-    sessions_start(): Starts a session
-    Starting a session stores a key on the users browser that persists until the browser is closed.
-    Session variables can then be set on the server associated with the users session and can be accessed across all pages, or multiple PHP files.
-    Very convenient system.
-*/
+
 session_start();
 
 

@@ -2,12 +2,7 @@
 require("./backend/head.php");
 require("./backend/log.php");
 require("./backend/session.php");
-/*
-	Starts a session
-	Starting a session stores a key on the users browser that persists until the browser is closed.
-	Session variables can then be set on the server associated with the users session and can be accessed across all pages, or multiple PHP files.
-	Very convenient system.
-*/
+
 $username = startSession();
 if ($username == "") {
 	header("Location: index.php");
@@ -23,6 +18,7 @@ require("./backend/editSchedulerHelper.php");
 <head>
 	<?php head('Edit Your Schedule'); ?>
 	<link rel="stylesheet" href="./css/editSchedule.css">
+	<script src="./js/editSchedule.js"></script>
 </head>
 
 <body>
@@ -35,17 +31,41 @@ require("./backend/editSchedulerHelper.php");
 				<div class="create-event-button-container">
 					<button type="button" class="base-button color-button create-event-button">Create event</button>
 				</div>
+				<div id="event-form-container">
+					<div id="create-event-container" class="">
+						<form method="POST" action="mySchedule.php">
+							<label for="class">Class: </label>
+							<input type="text" name="class">
+							<label for="type">Type: </label>
+							<select name="type">
+								<option value="office-hours">Office Hours</option>
+								<option value="lecture">Lecture</option>
+								<option value="recitation">Recitation</option>
+								<option value="lab">Lab</option>
+							</select>
+							<label for="event-day">Day: </label>
+							<select name="event-day">
+								<option value="monday">Monday</option>
+								<option value="tuesday">Tuesday</option>
+								<option value="wednesday">Wednesday</option>
+								<option value="thursday">Thursday</option>
+								<option value="friday">Friday</option>
+							</select>
+							<label for="event-time">Start time: </label>
+							<input type="time" name="event-time">
+							<label for="description">Description: </label>
+							<input type="text" name="description" maxlength="100">
+						</form>
+					</div>
+					<div id="edit-event-container" class="">
+						<form method="POST" action="mySchedule.php">
 
-				<h3>Select Action</h3>
-				<select name="select-action" id="select-action">
-					<option value="select-default">Action</option>
-					<option value="add-event">Add event</option>
-					<option value="edit-event">Edit event</option>
-					<option value="remove-event">Remove event</option>
-				</select>
+						</form>
+					</div>
+				</div>
+
 			</div>
 			<div class="edit-class-list">
-				<!-- Will call a function from another file to dynamically load the schedule -->
 				<table class="edit-class-table">
 					<tr>
 						<th>My events</th>
@@ -56,7 +76,9 @@ require("./backend/editSchedulerHelper.php");
 		</div>
 		<div class="edit-button-container">
 			<a href="/mySchedule.php"><button type="button" class="base-button green-button edit-save-button">Save Changes</button></a>
+			<a href="/mySchedule.php">Go back > </a>
 		</div>
+
 	</div>
 
 </body>

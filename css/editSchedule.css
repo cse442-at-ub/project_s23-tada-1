@@ -38,8 +38,8 @@
 .event-row {
 	height: 80px;
 }
-.event-list-input {
-	box-sizing: border-box;
+.event-row:hover {
+	background-color: lightgray;
 }
 
 .create-event-button-container,
@@ -47,11 +47,29 @@
 	display: flex;
 	justify-content: center;
 }
+.edit-button-container {
+	flex-direction: column;
+	justify-content: center;
+}
+.edit-button-container a {
+	width: 100px;
+	margin: auto;
+	padding-bottom: 10px;
+	text-align: center;
+}
 .create-event-button {
 	padding: 10px;
 }
-.edit-save-button {
+
+.edit-button-container .edit-save-button {
 	margin: auto;
 	padding: 10px;
 	color: white;
+}
+
+#create-event-container form,
+#edit-event-container form {
+	display: flex;
+	flex-direction: column;
+	justify-content: left;
 }
