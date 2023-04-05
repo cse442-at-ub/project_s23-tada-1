@@ -1,8 +1,8 @@
 <?php
+
 function listEvents($username)
 {
     require('./backend/connection.php');
-
     $statement = $conn->prepare("SELECT * FROM Events where Username = (?)");
     if (!$statement) {
         $error = $conn->error;
@@ -18,12 +18,12 @@ function listEvents($username)
         return False;
     }
 
-    $id = 0;
     $events = array();
+    $id = 0;
     while (($event = mysqli_fetch_assoc($result_query))) {
         array_push($events, $event);
         $row = '<tr class="event-row" onclick="clickEvent(this)" data-id="' . $id . '">';
-        $div = '<div class="event-container"';
+        $div = '<div class="event-container">';
         $titleLine = "<p><b>" . $event["Class"] . " " . $event["Event Type"] . "</b></p>";
         $timeLine = "<p>" . $event["Day"] . " " . $event["Time"] . "</p>";
         echo $row . '<td>' . $div . $titleLine . $timeLine . "</div></td></tr>";
@@ -31,7 +31,7 @@ function listEvents($username)
         $id += 1;
     }
     console_log($events);
-    return $events;
+    $_SESSION["events"] = $events;
 }
 
 function displayInsert()

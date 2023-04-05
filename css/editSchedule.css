@@ -18,6 +18,7 @@
 	display: flex;
 	flex-direction: row;
 	justify-content: space-around;
+	padding-bottom: 20px;
 }
 
 .edit-schedule-menu {
@@ -41,30 +42,26 @@
 .event-row:hover {
 	background-color: lightgray;
 }
+.event-row td {
+	padding: 10px;
+	border-top: 1px solid black;
+	border-bottom: 1px solid black;
+}
 
-.create-event-button-container,
-.edit-button-container {
+.create-form-button-container {
 	display: flex;
-	justify-content: center;
+	justify-content: right;
 }
-.edit-button-container {
-	flex-direction: column;
-	justify-content: center;
+.edit-form-button-container {
+	display: flex;
+	justify-content: space-between;
 }
-.edit-button-container a {
+
+.return-link {
 	width: 100px;
 	margin: auto;
 	padding-bottom: 10px;
 	text-align: center;
-}
-.create-event-button {
-	padding: 10px;
-}
-
-.edit-button-container .edit-save-button {
-	margin: auto;
-	padding: 10px;
-	color: white;
 }
 
 #create-event-container form,
