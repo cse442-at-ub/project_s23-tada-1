@@ -1,10 +1,11 @@
 <?php
+require('./backend/log.php');
+session_start();
+
 require('./backend/connection.php');
 require('./backend/user.php');
-require('./backend/log.php');
 require('./backend/head.php');
 
-session_start();
 
 $nameErr = $passwordErr = $generalErr = "";
 $name = $password = "";

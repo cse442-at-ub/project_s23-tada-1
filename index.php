@@ -1,12 +1,13 @@
 <?php
-require('./backend/connection.php');
-require('./backend/log.php');
-require('./backend/head.php');
-require('./backend/session.php');
 $config = require('./backend/config.php');
-console_log("Running on " . php_sapi_name());
-
+require('./backend/log.php');
+require('./backend/session.php');
 $username = startSession();
+
+require('./backend/connection.php');
+require('./backend/head.php');
+
+console_log("Running on " . php_sapi_name());
 ?>
 
 <!DOCTYPE html>
@@ -78,7 +79,8 @@ $username = startSession();
 		}
 	}
 
-	function updateHelper($old, $new){
+	function updateHelper($old, $new)
+	{
 		$conn = mysqli_connect("oceanus.cse.buffalo.edu:3306", "khlam", "50338576", "cse442_2023_spring_team_p_db");
 
 		$sql_query = "UPDATE ScheduleDatabase (Item) SET ('$new') WHERE (Item) = ('$old')";

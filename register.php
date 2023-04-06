@@ -1,11 +1,12 @@
 <?php
 $config = require('./backend/config.php');
 require('./backend/log.php');
+session_start();
+
 require('./backend/head.php');
 require('./backend/user.php');
 require('./backend/connection.php');
 
-session_start();
 
 
 // define variables and set to empty values
@@ -61,8 +62,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	if ($nameErr == "" && $emailErr == "" && $passwordErr == "") {
 		// Makes the password
 		// Check password for correct length and characters
-		insert_user($name, $email, $password);
-		header("Location: $config->root_dir/index.php");
+		if (insert_user($name, $email, $password)) {
+			header("Location: $config->root_dir/index.php");
+		}
 	}
 }
 ?>

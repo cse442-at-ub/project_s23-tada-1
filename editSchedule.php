@@ -1,20 +1,14 @@
 <?php
-require("./backend/head.php");
 require("./backend/log.php");
 require("./backend/session.php");
-
 $username = startSession();
-if ($username == "") {
+if ($username == "") {	// If user isn't logged in go back to home page
 	header("Location: index.php");
 }
 
 require("./backend/editSchedulerHelper.php");
+require("./backend/head.php");
 
-$events = "";
-
-if (isset($_GET['id'])) {
-	echo $events;
-}
 
 ?>
 
@@ -39,7 +33,7 @@ if (isset($_GET['id'])) {
 				</div>
 				<div id="event-form-container">
 					<div id="create-event-container" class="hide">
-						<form method="POST" action="mySchedule.php" id="create-event-form">
+						<form method="POST" action="eventHandle.php" id="create-event-form">
 							<label for="Class">Class: </label>
 							<input type="text" name="Class">
 							<label for="Type">Type: </label>
@@ -62,12 +56,12 @@ if (isset($_GET['id'])) {
 							<label for="Description">Description: </label>
 							<input type="text" name="Description" maxlength="100">
 							<div class="create-form-button-container">
-								<a href="/mySchedule.php"><button type="button" class="base-button green-button edit-save-button">Create Event</button></a>
+								<input type="submit" class="base-button green-button" id="create-event-button" name="Create Event" value="Create Event">
 							</div>
 						</form>
 					</div>
 					<div id="edit-event-container" class="hide">
-						<form method="POST" action="mySchedule.php" id="edit-event-form">
+						<form method="POST" action="eventHandle.php" id="edit-event-form">
 							<label for="Class">Class: </label>
 							<input type="text" name="Class">
 							<label for="Type">Type: </label>
@@ -90,8 +84,8 @@ if (isset($_GET['id'])) {
 							<label for="Description">Description: </label>
 							<input type="text" name="Description" maxlength="100">
 							<div class="edit-form-button-container">
-								<a href="/mySchedule.php"><button type="button" class="base-button red-button remove-button">Remove Event</button></a>
-								<a href="/mySchedule.php"><button type="button" class="base-button green-button edit-save-button">Save Changes</button></a>
+								<input type="submit" class="base-button red-button" id="remove-button" name="Remove Event" value="Remove Event">
+								<input type="submit" class="base-button green-button" id="edit-save-button" name="Save Changes" value="Save Changes">
 							</div>
 						</form>
 					</div>

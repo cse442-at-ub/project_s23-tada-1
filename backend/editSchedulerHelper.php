@@ -22,45 +22,22 @@ function listEvents($username)
     $id = 0;
     while (($event = mysqli_fetch_assoc($result_query))) {
         array_push($events, $event);
-        $row = '<tr class="event-row" onclick="clickEvent(this)" data-id="' . $id . '">';
-        $div = '<div class="event-container">';
-        $titleLine = "<p><b>" . $event["Class"] . " " . $event["Event Type"] . "</b></p>";
-        $timeLine = "<p>" . $event["Day"] . " " . $event["Time"] . "</p>";
-        echo $row . '<td>' . $div . $titleLine . $timeLine . "</div></td></tr>";
-
+        $class = $event["Class"];
+        $type = $event["Event Type"];
+        $day = $event["Day"];
+        $time = $event["Time"];
+        $html = <<<"EOT"
+            <tr class="event-row" onclick="clickEvent(this)" data-id="$id">
+                <td>
+                    <div class="event-container">
+                        <p><b>$class $type</b></p>
+                        <p>$day $time</p>
+                    </div
+                </td>
+            </tr>
+            EOT;
+        echo $html;
         $id += 1;
     }
-    console_log($events);
     $_SESSION["events"] = $events;
-}
-
-function displayInsert()
-{
-    echo '
-	<form method="GET" action="schedule.php">
-	Insert: <input type="text" name="insert">
-	<button type="submit">Insert</button>
-	</form>
-    ';
-}
-
-function displayUpdate()
-{
-    echo '
-    <form method="GET" action="schedule.php">
-    Current: <input type="text" name="update_current">
-    New: <input type="text" name="update_new">
-    <button type="submit">Update</button>
-    </form>
-    ';
-}
-
-function displayRemove()
-{
-    echo '
-	<form method="GET" action="schedule.php">
-    Remove: <input type="text" name="remove">
-    <button type="submit">Remove</button>
-    </form>
-	';
 }

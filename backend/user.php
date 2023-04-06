@@ -16,12 +16,12 @@ function insert_user($name, $email, $password)
     $statement->execute();
     if (mysqli_error($conn)) {
         console_log("Error: " . mysqli_error($conn));
-    } else {
-        console_log("Successfully registered $name to database");
+        return false;
     }
 
     // Closes the connection
     mysqli_close($conn);
+    return true;
 }
 
 /*

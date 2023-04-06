@@ -1,5 +1,6 @@
+// When the create event button is pressed, the edit form if it's showing
+// Then show the crete form
 function showCreateEvent() {
-	console.log("Create event button pressed");
 	const createContainer = document.getElementById("create-event-container");
 	const editContainer = document.getElementById("edit-event-container");
 	if (!editContainer.classList.contains("hide")) {
@@ -8,10 +9,11 @@ function showCreateEvent() {
 	createContainer.classList.remove("hide");
 }
 
+// When an event is clicked, send a request to the server for an array of the event information
 function clickEvent(element) {
 	let id = element.getAttribute("data-id");
 
-	url = `/eventList.php`;
+	url = `/eventHandle.php`;
 	var request = new XMLHttpRequest();
 	request.onreadystatechange = function () {
 		if (request.readyState == 4 && request.status == 200) {
@@ -22,12 +24,15 @@ function clickEvent(element) {
 	request.send(null);
 }
 
+// Handles the event array returned by the server
+// First hide the create form if it's showing
+// Fill out the sections of the form with the information in the array
+// Show edit form
 function handleEditForm(jsonArray) {
 	if (jsonArray == "null") {
 		return;
 	}
 	let event = JSON.parse(jsonArray);
-	console.log(event);
 
 	const createContainer = document.getElementById("create-event-container");
 	const editContainer = document.getElementById("edit-event-container");
@@ -37,18 +42,17 @@ function handleEditForm(jsonArray) {
 		createContainer.classList.add("hide");
 	}
 
+	// For each element in the form
 	for (element of editForm.children) {
 		if (element.nodeName == "INPUT") {
-			if (element.name == "time") {
-				t = event[element.name];
-			}
+			// If the form is an input, set the value to the corresponding information
 			element.setAttribute("value", event[element.name]);
 		} else if (element.nodeName == "SELECT") {
+			// If the element is a select statement, deselect all options and select the matching option
 			for (option of element.children) {
 				option.removeAttribute("selected");
 				if (option.value == event["Day"]) {
 					option.setAttribute("selected", "selected");
-					break;
 				} else if (option.value == event["Event Type"]) {
 					option.setAttribute("selected", "selected");
 				}
@@ -58,10 +62,3 @@ function handleEditForm(jsonArray) {
 
 	editContainer.classList.remove("hide");
 }
-
-/*
-Store events array in session variable
-Create extra file to handle sending what's stored in session variable
-In clickEvent, create request to retrieve array information
-go ham
-*/
