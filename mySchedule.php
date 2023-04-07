@@ -27,6 +27,24 @@
         Very convenient system.
     */
 	session_start();
+
+	#commit message git commit -m "First try at displaying any content for the schedle
+ #40" -m 
+	include('./backend/connection.php');
+	include('./database/eventDisplay.php');
+
+	if (isset($_SESSION["username"]) && !empty($_SESSION["username"])) {
+		$username = $_SESSION["username"];
+		$funcList = listDisplayEvents($username); #raw info
+
+		for($day = 0; $day < count($funcList); $day++){
+			$dayList = $funcList[$day];
+			for($event = 0; $event < count($dayList); $event++){
+				echo "Day no. : " . $day . " -- " . "Event: " . $funcList[$day][$event];
+			}
+		}
+	}
+
 	?>
 	<h1>My Schedule<h1>
 			<button type="button">Edit Schedule</button>

@@ -1,32 +1,70 @@
 <?php
-include('./backend/connection.php'); 
 
-class TypeEvent {
-    public $Time;
-    public $EventType;
-    public $Class;
-    public $Description;
-} 
+// class TypeEvent {
+//     public $Time;
+//     public $EventType;
+//     public $Class;
+//     public $Description;
+// }
 
-#----------This function is to help displaying the data we want onto the mySchedule.php page.----------------------------------------#
-#----------It'll return a list of lists (where Index 1 = Monday, Index 2 = Tuesday, etc.---------------------------------------------#
-#----------Note: You must access this structure/class because you'll need to be able to read this on the mySchedule page later.------#
+//----------This function is to help displaying the data we want onto the mySchedule.php page.----------------------------------------#
+//----------It'll return a list of lists (where Index 1 = Monday, Index 2 = Tuesday, etc.---------------------------------------------#
+//----------Note: You must access this structure/class because you'll need to be able to read this on the mySchedule page later.------#
+
+// Helper function to sort array by key //
+
+// Function taken from https://www.php.net/manual/en/function.sort.php //
+function array_sort($array, $on, $order=SORT_ASC)
+{
+    $new_array = array();
+    $sortable_array = array();
+
+    if (count($array) > 0) {
+        foreach ($array as $k => $v) {
+            if (is_array($v)) {
+                foreach ($v as $k2 => $v2) {
+                    if ($k2 == $on) {
+                        $sortable_array[$k] = $v2;
+                    }
+                }
+            } else {
+                $sortable_array[$k] = $v;
+            }
+        }
+
+        switch ($order) {
+            case SORT_ASC:
+                asort($sortable_array);
+            break;
+            case SORT_DESC:
+                arsort($sortable_array);
+            break;
+        }
+
+        foreach ($sortable_array as $k => $v) {
+            $new_array[$k] = $array[$k];
+        }
+    }
+
+    return $new_array;
+}
+
 
 function listDisplayEvents($username)
 {
-    include('./backend/connection.php'); 
-    # list of all the events happening on the specific day
+    include('./backend/connection.php');
+    // list of all the events happening on the specific day
     $Monday = array();
     $Tuesday = array();
     $Wednesday = array();
     $Thursday = array();
     $Friday = array();
 
-    # returning list of lists
+    // returning list of lists
     $list_return = array();
     $statement = $conn->prepare("SELECT * FROM EventData where Username = (?)");
     if (!$statement) {
-        console_log("Error on event display: " . $conn->error);
+        console_log("Error on retrieving data: " . $statement->error);
         return;
     }
     $statement->bind_param('s', $username);
@@ -41,50 +79,63 @@ function listDisplayEvents($username)
         // Supposedly adds a dictionary to a list that will be used to output the values on the schedule page
         while ($row = mysqli_fetch_assoc($result)) {
             if ($row['Day'] == 'Monday'){
-                $Event = new typeEvent();
-                $Event ->$Time = $row['Time'];
-                $Event -> $EventType = $row['Event Type'];
-                $Event -> $Class = $row['Class'];
-                $Event -> $Description = $row['Description'];
+                $Event = array(
+                    "Time" => $row['Time'], 
+                    "EventType" => $row['Event Type'],
+                    "Class" => $row['Class'],
+                    "Description" => $row['Description']
+                );
                 array_push($Monday, $Event);
             }
             if ($row['Day'] == 'Tuesday'){
-                $Event = new typeEvent();
-                $Event ->$Time = $row['Time'];
-                $Event -> $EventType = $row['Event Type'];
-                $Event -> $Class = $row['Class'];
-                $Event -> $Description = $row['Description'];
+                $Event = array(
+                    "Time" => $row['Time'],
+                    "EventType" => $row['Event Type'],
+                    "Class" => $row['Class'],
+                    "Description" => $row['Description']
+                );
                 array_push($Tuesday, $Event);
             }
             if ($row['Day'] == 'Wednesday'){
-                $Event = new typeEvent();
-                $Event ->$Time = $row['Time'];
-                $Event -> $EventType = $row['Event Type'];
-                $Event -> $Class = $row['Class'];
-                $Event -> $Description = $row['Description'];
+                $Event = array(
+                    "Time" => $row['Time'],
+                    "EventType" => $row['Event Type'],
+                    "Class" => $row['Class'],
+                    "Description" => $row['Description']
+                );
                 array_push($Wednesday, $Event);
             }
             if ($row['Day'] == 'Thursday'){
-                $Event = new typeEvent();
-                $Event ->$Time = $row['Time'];
-                $Event -> $EventType = $row['Event Type'];
-                $Event -> $Class = $row['Class'];
-                $Event -> $Description = $row['Description'];
+                $Event = array(
+                    "Time" => $row['Time'],
+                    "EventType" => $row['Event Type'],
+                    "Class" => $row['Class'],
+                    "Description" => $row['Description']
+                );
                 array_push($Thursday, $Event);
             }
             if ($row['Day'] == 'Friday'){
-                $Event = new typeEvent();
-                $Event ->$Time = $row['Time'];
-                $Event -> $EventType = $row['Event Type'];
-                $Event -> $Class = $row['Class'];
-                $Event -> $Description = $row['Description'];
+                $Event = array(
+                    "Time" => $row['Time'],
+                    "EventType" => $row['Event Type'],
+                    "Class" => $row['Class'],
+                    "Description" => $row['Description']
+                );
                 array_push($Friday, $Event);
             }
-            array_push($list_return, $Monday);
-            array_push($list_return, $Tuesday);
-            array_push($list_return, $Wednesday);
-            array_push($list_return, $Thursday);
-            array_push($list_return, $Friday);
+            // sort each day list by the time 
+            $sortMon = array_sort($Monday, "Time", SORT_ASC);
+            $sortTue = array_sort($Tuesday, "Time", SORT_ASC);
+            $sortWed = array_sort($Wednesday, "Time", SORT_ASC);
+            $sortThu = array_sort($Thursday, "Time", SORT_ASC);
+            $sortFri = array_sort($Friday, "Time", SORT_ASC);
+
+            // add the sorted lists to the returned value
+            array_push($list_return, $sortMon);
+            array_push($list_return, $sortTue);
+            array_push($list_return, $sortWed);
+            array_push($list_return, $sortThu);
+            array_push($list_return, $sortFri);
         }
         return $list_return;
     }
