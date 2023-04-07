@@ -21,24 +21,30 @@ function listJobs($username)
     $jobs = array();
     $id = 0;
     while (($job = mysqli_fetch_assoc($result_query))) {
-        array_push($jobs, $event);
-        // $class = $event["Class"];
-        // $type = $event["Event Type"];
-        // $day = $event["Day"];
-        // $time = $event["Time"];
-        // $html = <<<"EOT"
-        //     <tr class="event-row" onclick="clickEvent(this)" data-id="$id">
-        //         <td>
-        //             <div class="event-container">
-        //                 <p><b>$class $type</b></p>
-        //                 <p>$day $time</p>
-        //             </div
-        //         </td>
-        //     </tr>
-        //     EOT;
-        // echo $html;
+        array_push($jobs, $job);
+        $title = $job["Title"];
+        $professor = $job["Professor"];
+        $description = $job["Description"];
+        $html = <<<"EOT"
+            <tr class="job-row">
+                <td>
+                    $title
+                </td>
+                <td>
+                    $professor
+                </td>
+                <td>
+                    $description
+                </td>
+                <td>
+                <form>
+                    <input type="submit" class="base-button green-button" id="apply-button" name="Apply" value="Apply">
+                </form>
+                </td>
+            </tr>
+            EOT;
+        echo $html;
         $id += 1;
     }
-    $_SESSION["jobs"] = $jobs;
     console_log(json_encode($jobs));
 }

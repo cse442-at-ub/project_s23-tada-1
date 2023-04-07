@@ -21,7 +21,23 @@ require("./backend/head.php");
 
 <body>
     <div id="job-board-container">
-        <?php listJobs($username); ?>
+        <table id="job-table">
+            <tr>
+                <th>
+                    Title
+                </th>
+                <th>
+                    Employer
+                </th>
+                <th>
+                    Description
+                </th>
+                <th>
+
+                </th>
+            </tr>
+            <?php listJobs($username); ?>
+        </table>
     </div>
 </body>
 
