@@ -77,23 +77,37 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <head>
 	<?php head('Register Page'); ?>
+	<link  rel="stylesheet" type="text/css" href="css/style.css" />
 </head>
 
 <body>
-	<h2>register here !</h2>
-	<p><span class="error">* required field</span></p>
-	<form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
-		Username: <input type="text" name="username" value="<?php echo $name; ?>">
-		<span class="error">* <?php echo $nameErr; ?></span>
-		<br><br>
-		Email: <input type="text" name="email" value="<?php echo $email; ?>">
-		<span class="error">* <?php echo $emailErr; ?></span>
-		<br><br>
-		Password: <input type="password" name="password" value="<?php echo $password; ?>">
-		<span class="error">* <?php echo $passwordErr; ?></span>
-		<br><br>
-		<input type="submit" name="register" value="Register">
-	</form>
+	<div class="page-top-view">
+		<ul class="nav justify-content-center">
+			<li> <h2 class="logo"> TADA!</h2> </li>
+		</ul>
+  	</div>
+	
+	<div class='outlined-box-register'>
+		<h2 class="login-title">Register Here!</h2>
+		<p><span class="error">* required field</span></p>
+		<form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
+			Username <br>
+			<input class="login-info-box" type="text" name="username" value="<?php echo $name; ?>">
+			<span class="error">* <?php echo $nameErr; ?></span>
+			<br><br>
+			Email<br>
+			<input class="login-info-box" type="text" name="email" value="<?php echo $email; ?>">
+			<span class="error">* <?php echo $emailErr; ?></span>
+			<br><br>
+			Password<br>
+			<input class="login-info-box" type="password" name="password" value="<?php echo $password; ?>">
+			<span class="error">* <?php echo $passwordErr; ?></span>
+			<br><br>
+			<input class="login-button" type="submit" name="register" value="Register">
+			<br><br>
+			Already have an account? Log in <a href="login.php">Here!</a>
+		</form>
+	</div>
 </body>
 
 </html>
