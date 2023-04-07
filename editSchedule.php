@@ -28,6 +28,7 @@ require("./backend/head.php");
 		<div class="edit-container-inner">
 			<div class="edit-schedule-menu">
 				<p> To add a new event, press the Create Event button below. If you would like to edit or remove an existing event, click on one of your events in the list on the right.</p>
+				<p> For time, input the hour in 24 hour time between 8:00 through 17:00</p>
 				<div class="create-event-button-container">
 					<button type="button" class="base-button color-button create-event-button" onclick="showCreateEvent()">Create event</button>
 				</div>
@@ -52,7 +53,7 @@ require("./backend/head.php");
 								<option value="Friday">Friday</option>
 							</select>
 							<label for="Time">Start time: </label>
-							<input type="time" name="Time">
+							<input type="number" name="Time" min="8" max="17">
 							<label for="Description">Description: </label>
 							<input type="text" name="Description" maxlength="100">
 							<div class="create-form-button-container">
@@ -80,7 +81,7 @@ require("./backend/head.php");
 								<option value="Friday">Friday</option>
 							</select>
 							<label for="Time">Start time: </label>
-							<input type="time" name="Time">
+							<input type="number" name="Time" min="8" max="17">
 							<label for="Description">Description: </label>
 							<input type="text" name="Description" maxlength="100">
 							<div class="edit-form-button-container">

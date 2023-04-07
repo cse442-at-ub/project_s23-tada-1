@@ -9,6 +9,7 @@ require('./backend/connection.php');
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     error_log(print_r($_POST, true));
     $event = $_SESSION["currentEvent"];
+    $_POST["Time"] = $_POST["Time"] . ":00";
     if (isset($_POST['Save_Changes'])) {
         error_log(print_r("Received edit event request", true));
         $statement = $conn->prepare("UPDATE `Events` SET `Day`=?, `Time`=?, `Event Type`=?, `Class`=?, `Description`=? WHERE `Username`=? AND `Day`=? AND `Time`=? AND `Event Type`=? AND `Class`=? AND `Description`=?");
