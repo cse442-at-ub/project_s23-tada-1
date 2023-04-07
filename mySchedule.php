@@ -33,14 +33,19 @@
 	include('./backend/connection.php');
 	include('./database/eventDisplay.php');
 
+	//echo "hello";
+
 	if (isset($_SESSION["username"]) && !empty($_SESSION["username"])) {
 		$username = $_SESSION["username"];
 		$funcList = listDisplayEvents($username); #raw info
 
-		for($day = 0; $day < count($funcList); $day++){
+		//print_r($funcList);
+		for($day = 0; $day < sizeof($funcList); $day++){
 			$dayList = $funcList[$day];
+			//echo $dayList . "\n";
 			for($event = 0; $event < count($dayList); $event++){
-				echo "Day no. : " . $day . " -- " . "Event: " . $funcList[$day][$event];
+				echo "Day no. : " . $day . " -- " . "Event: " . $funcList[$day][$event]['Class'];
+				echo "<br>";
 			}
 		}
 	}

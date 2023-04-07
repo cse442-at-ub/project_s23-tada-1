@@ -49,10 +49,11 @@ function array_sort($array, $on, $order=SORT_ASC)
     return $new_array;
 }
 
-
 function listDisplayEvents($username)
 {
     include('./backend/connection.php');
+    include('./backend/log.php');
+
     // list of all the events happening on the specific day
     $Monday = array();
     $Tuesday = array();
@@ -62,32 +63,39 @@ function listDisplayEvents($username)
 
     // returning list of lists
     $list_return = array();
-    $statement = $conn->prepare("SELECT * FROM EventData where Username = (?)");
+    $statement = $conn->prepare("SELECT * FROM Events WHERE Username = (?)");
+
     if (!$statement) {
-        console_log("Error on retrieving data: " . $statement->error);
+        console_log("Error on retrieving data: " . $conn->error);
+        // echo mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
         return;
     }
+
     $statement->bind_param('s', $username);
     $statement->execute();
     $result_query = $statement->get_result();
+
 
     if (mysqli_num_rows($result_query) <= 0) {
         echo '<tr class="event-row"<td><p>You have no events!</p></td></tr>';
         return;
     }
     else{
+        $counter = 0;
         // Supposedly adds a dictionary to a list that will be used to output the values on the schedule page
-        while ($row = mysqli_fetch_assoc($result)) {
-            if ($row['Day'] == 'Monday'){
+        while ($row = mysqli_fetch_assoc($result_query)) {
+            $spaceRemove = trim($row['Day']);
+            if ($spaceRemove == 'Monday'){
                 $Event = array(
                     "Time" => $row['Time'], 
                     "EventType" => $row['Event Type'],
                     "Class" => $row['Class'],
                     "Description" => $row['Description']
                 );
+                $count++;
                 array_push($Monday, $Event);
             }
-            if ($row['Day'] == 'Tuesday'){
+            if ($spaceRemove == 'Tuesday'){
                 $Event = array(
                     "Time" => $row['Time'],
                     "EventType" => $row['Event Type'],
@@ -96,7 +104,7 @@ function listDisplayEvents($username)
                 );
                 array_push($Tuesday, $Event);
             }
-            if ($row['Day'] == 'Wednesday'){
+            if ($spaceRemove == 'Wednesday'){
                 $Event = array(
                     "Time" => $row['Time'],
                     "EventType" => $row['Event Type'],
@@ -105,7 +113,7 @@ function listDisplayEvents($username)
                 );
                 array_push($Wednesday, $Event);
             }
-            if ($row['Day'] == 'Thursday'){
+            if ($spaceRemove == 'Thursday'){
                 $Event = array(
                     "Time" => $row['Time'],
                     "EventType" => $row['Event Type'],
@@ -114,7 +122,7 @@ function listDisplayEvents($username)
                 );
                 array_push($Thursday, $Event);
             }
-            if ($row['Day'] == 'Friday'){
+            if ($spaceRemove == 'Friday'){
                 $Event = array(
                     "Time" => $row['Time'],
                     "EventType" => $row['Event Type'],
@@ -123,20 +131,20 @@ function listDisplayEvents($username)
                 );
                 array_push($Friday, $Event);
             }
-            // sort each day list by the time 
-            $sortMon = array_sort($Monday, "Time", SORT_ASC);
-            $sortTue = array_sort($Tuesday, "Time", SORT_ASC);
-            $sortWed = array_sort($Wednesday, "Time", SORT_ASC);
-            $sortThu = array_sort($Thursday, "Time", SORT_ASC);
-            $sortFri = array_sort($Friday, "Time", SORT_ASC);
-
-            // add the sorted lists to the returned value
-            array_push($list_return, $sortMon);
-            array_push($list_return, $sortTue);
-            array_push($list_return, $sortWed);
-            array_push($list_return, $sortThu);
-            array_push($list_return, $sortFri);
         }
+        // sort each day list by the time 
+        $sortMon = array_sort($Monday, "Time", SORT_ASC);
+        $sortTue = array_sort($Tuesday, "Time", SORT_ASC);
+        $sortWed = array_sort($Wednesday, "Time", SORT_ASC);
+        $sortThu = array_sort($Thursday, "Time", SORT_ASC);
+        $sortFri = array_sort($Friday, "Time", SORT_ASC);
+
+        // add the sorted lists to the returned value
+        array_push($list_return, $sortMon);
+        array_push($list_return, $sortTue);
+        array_push($list_return, $sortWed);
+        array_push($list_return, $sortThu);
+        array_push($list_return, $sortFri);
         return $list_return;
     }
 } 
