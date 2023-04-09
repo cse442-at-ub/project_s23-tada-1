@@ -2,7 +2,7 @@
 <html>
 
 <head>
-	The My Schedules Page
+	<h1>The Schedules Page !!!!!</h1>
 	<style>
 		table,
 		th,
@@ -53,7 +53,7 @@
 			for($event = 0; $event < sizeof($dayList); $event++){
 				$timeChars = "";
 
-				$timeChars = substr($funcList[$day][$event]['Time'], 0, 2); # str '10'
+				$timeChars = substr($funcList[$day][$event][0], 0, 2); # str '10'
 				if(strval($timeChars) == '08'){
 					$timeChars = '8';
 				}
@@ -83,40 +83,72 @@
 
 			for($eachEvent = 0; $eachEvent < 10; $eachEvent++){
 				$theEvent = $fillInList[$eachDay][$eachEvent];
-				if($eachEvent == 0){
-					array_push($eightam, $theEvent);
-				}
-				if($eachEvent == 1){
-					array_push($nineam, $theEvent);
-				}
-				if($eachEvent == 2){
-					array_push($tenam, $theEvent);
-				}
-				if($eachEvent == 3){
-					array_push($elevenam, $theEvent);
-				}
-				if($eachEvent == 4){
-					array_push($twelvepm, $theEvent);
-				}
-				if($eachEvent == 5){
-					array_push($onepm, $theEvent);
-				}
-				if($eachEvent == 6){
-					array_push($twopm, $theEvent);
-				}
-				if($eachEvent == 7){
-					array_push($threepm, $theEvent);
-				}
-				if($eachEvent == 8){
-					array_push($fourpm, $theEvent);
-				}
-				if($eachEvent == 9){
-					array_push($fivepm, $theEvent);
+				if ($theEvent != " "){
+					if($eachEvent == 0){
+						array_push($eightam, $theEvent);
+					}
+					if($eachEvent == 1){
+						array_push($nineam, $theEvent);
+					}
+					if($eachEvent == 2){
+						array_push($tenam, $theEvent);
+					}
+					if($eachEvent == 3){
+						array_push($elevenam, $theEvent);
+					}
+					if($eachEvent == 4){
+						array_push($twelvepm, $theEvent);
+					}
+					if($eachEvent == 5){
+						array_push($onepm, $theEvent);
+					}
+					if($eachEvent == 6){
+						array_push($twopm, $theEvent);
+					}
+					if($eachEvent == 7){
+						array_push($threepm, $theEvent);
+					}
+					if($eachEvent == 8){
+						array_push($fourpm, $theEvent);
+					}
+					if($eachEvent == 9){
+						array_push($fivepm, $theEvent);
+					}
+				} else {
+					if($eachEvent == 0){
+						array_push($eightam, " ");
+					}
+					if($eachEvent == 1){
+						array_push($nineam, " ");
+					}
+					if($eachEvent == 2){
+						array_push($tenam, " ");
+					}
+					if($eachEvent == 3){
+						array_push($elevenam, " ");
+					}
+					if($eachEvent == 4){
+						array_push($twelvepm, " ");
+					}
+					if($eachEvent == 5){
+						array_push($onepm, " ");
+					}
+					if($eachEvent == 6){
+						array_push($twopm, " ");
+					}
+					if($eachEvent == 7){
+						array_push($threepm, " ");
+					}
+					if($eachEvent == 8){
+						array_push($fourpm, " ");
+					}
+					if($eachEvent == 9){
+						array_push($fivepm, " ");
+					}
 				}
 			}
 
 		}
-
 
 		echo "<br>";
 
@@ -132,98 +164,126 @@
 
 			echo "<tr>";
 				echo "<td>" . "8:00am" . "</td>";
-				echo "<td>" . strval($eightam[0]['Class']) . "</td>";
-				echo "<td>" . strval($eightam[1]['Class']) . "</td>";
-				echo "<td>" . strval($eightam[2]['Class']) . "</td>";
-				echo "<td>" . strval($eightam[3]['Class']) . "</td>";
-				echo "<td>" . strval($eightam[4]['Class']) . "</td>";
+				for($f = 0; $f < 5; $f++){
+					//echo "Event: " . strval($eightam[$f]);
+					if ($eightam[$f][0] == " "){
+						//echo "Got in here";
+						echo "<td>" . strval($eightam[$f][0]) . "</td>";
+					} else {
+						echo "<td>" . strval($eightam[$f][2]) . "</td>";
+					}
+				}
 			echo "</tr>";
 
 			echo "<tr>";
 				echo "<td>" . "9:00am" . "</td>";
-				echo "<td>" . strval($nineam[0]['Class']) . "</td>";
-				echo "<td>" . strval($nineam[1]['Class']) . "</td>";
-				echo "<td>" . strval($nineam[2]['Class']) . "</td>";
-				echo "<td>" . strval($nineam[3]['Class']) . "</td>";
-				echo "<td>" . strval($nineam[4]['Class']) . "</td>";
+				for($f = 0; $f < 5; $f++){
+					//echo "Event: " . strval($nineam[$f][0]);
+					if ($nineam[$f][0] == " "){
+						echo "<td>" . strval($nineam[$f][0]) . "</td>";
+					} else {
+						echo "<td>" . strval($nineam[$f][2]) . "</td>";
+					}
+				}
 			echo "</tr>";
-
+			
 			echo "<tr>";
 				echo "<td>" . "10:00am" . "</td>";
-				echo "<td>" . strval($tenam[0]['Class']) . "</td>";
-				echo "<td>" . strval($tenam[1]['Class']) . "</td>";
-				echo "<td>" . strval($tenam[2]['Class']) . "</td>";
-				echo "<td>" . strval($tenam[3]['Class']) . "</td>";
-				echo "<td>" . strval($tenam[4]['Class']) . "</td>";
+				for($f = 0; $f < 5; $f++){
+					if ($tenam[$f][0] == " "){
+						echo "<td>" . strval($tenam[$f][0]) . "</td>";
+					} else {
+						echo "<td>" . strval($tenam[$f][2]) . "</td>";
+					}
+				}
 			echo "</tr>";
 
 			echo "<tr>";
 				echo "<td>" . "11:00am" . "</td>";
-				echo "<td>" . strval($elevenam[0]['Class']) . "</td>";
-				echo "<td>" . strval($elevenam[1]['Class']) . "</td>";
-				echo "<td>" . strval($elevenam[2]['Class']) . "</td>";
-				echo "<td>" . strval($elevenam[3]['Class']) . "</td>";
-				echo "<td>" . strval($elevenam[4]['Class']) . "</td>";
+				for($f = 0; $f < 5; $f++){
+					if ($elevenam[$f][0] == " "){
+						echo "<td>" . strval($elevenam[$f][0]) . "</td>";
+					} else {
+						echo "<td>" . strval($elevenam[$f][2]) . "</td>";
+					}
+				}
 			echo "</tr>";
 
 			echo "<tr>";
 				echo "<td>" . "12:00pm" . "</td>";
-				echo "<td>" . strval($twelvepm[0]['Class']) . "</td>";
-				echo "<td>" . strval($twelvepm[1]['Class']) . "</td>";
-				echo "<td>" . strval($twelvepm[2]['Class']) . "</td>";
-				echo "<td>" . strval($twelvepm[3]['Class']) . "</td>";
-				echo "<td>" . strval($twelvepm[4]['Class']) . "</td>";
+				for($f = 0; $f < 5; $f++){
+					if ($twelvepm[$f][0] == " "){
+						echo "<td>" . strval($twelvepm[$f][0]) . "</td>";
+					} else {
+						echo "<td>" . strval($twelvepm[$f][2]) . "</td>";
+					}
+				}
 			echo "</tr>";
 
 			echo "<tr>";
 				echo "<td>" . "1:00pm" . "</td>";
-				echo "<td>" . strval($onepm[0]['Class']) . "</td>";
-				echo "<td>" . strval($onepm[1]['Class']) . "</td>";
-				echo "<td>" . strval($onepm[2]['Class']) . "</td>";
-				echo "<td>" . strval($onepm[3]['Class']) . "</td>";
-				echo "<td>" . strval($onepm[4]['Class']) . "</td>";
+				for($f = 0; $f < 5; $f++){
+					if ($onepm[$f][0] == " "){
+						echo "<td>" . strval($onepm[$f][0]) . "</td>";
+					} else {
+						echo "<td>" . strval($onepm[$f][2]) . "</td>";
+					}
+				}
 			echo "</tr>";
 
 			echo "<tr>";
 				echo "<td>" . "2:00pm" . "</td>";
-				echo "<td>" . strval($twopm[0]['Class']) . "</td>";
-				echo "<td>" . strval($twopm[1]['Class']) . "</td>";
-				echo "<td>" . strval($twopm[2]['Class']) . "</td>";
-				echo "<td>" . strval($twopm[3]['Class']) . "</td>";
-				echo "<td>" . strval($twopm[4]['Class']) . "</td>";
+				for($f = 0; $f < 5; $f++){
+					if ($twopm[$f][0] == " "){
+						echo "<td>" . strval($twopm[$f][0]) . "</td>";
+					} else {
+						echo "<td>" . strval($twopm[$f][2]) . "</td>";
+					}
+				}
 			echo "</tr>";
 
 			echo "<tr>";
 				echo "<td>" . "3:00pm" . "</td>";
-				echo "<td>" . strval($threepm[0]['Class']) . "</td>";
-				echo "<td>" . strval($threepm[1]['Class']) . "</td>";
-				echo "<td>" . strval($threepm[2]['Class']) . "</td>";
-				echo "<td>" . strval($threepm[3]['Class']) . "</td>";
-				echo "<td>" . strval($threepm[4]['Class']) . "</td>";
+				for($f = 0; $f < 5; $f++){
+					if ($threepm[$f][0] == " "){
+						echo "<td>" . strval($threepm[$f][0]) . "</td>";
+					} else {
+						echo "<td>" . strval($threepm[$f][2]) . "</td>";
+					}
+				}
 			echo "</tr>";
 
 			echo "<tr>";
 				echo "<td>" . "4:00pm" . "</td>";
-				echo "<td>" . strval($fourpm[0]['Class']) . "</td>";
-				echo "<td>" . strval($fourpm[1]['Class']) . "</td>";
-				echo "<td>" . strval($fourpm[2]['Class']) . "</td>";
-				echo "<td>" . strval($fourpm[3]['Class']) . "</td>";
-				echo "<td>" . strval($fourpm[4]['Class']) . "</td>";
+				for($f = 0; $f < 5; $f++){
+					if ($fourpm[$f][0] == " "){
+						echo "<td>" . strval($fourpm[$f][0]) . "</td>";
+					} else {
+						echo "<td>" . strval($fourpm[$f][2]) . "</td>";
+					}
+				}
 			echo "</tr>";
 
 			echo "<tr>";
 				echo "<td>" . "5:00pm" . "</td>";
-				echo "<td>" . strval($fivepm[0]['Class']) . "</td>";
-				echo "<td>" . strval($fivepm[1]['Class']) . "</td>";
-				echo "<td>" . strval($fivepm[2]['Class']) . "</td>";
-				echo "<td>" . strval($fivepm[3]['Class']) . "</td>";
-				echo "<td>" . strval($fivepm[4]['Class']) . "</td>";
+				for($f = 0; $f < 5; $f++){
+					if ($fivepm[$f][0] == " "){
+						echo "<td>" . strval($fivepm[$f][0]) . "</td>";
+					} else {
+						echo "<td>" . strval($fivepm[$f][2]) . "</td>";
+					}
+				}
 			echo "</tr>";
 		echo "</table>";
 	}
 
 	?>
-	<h1>My Schedule<h1>
+	
+
+	<h2>Change My Schedule<h2>
+			<form method="GET" action="profile.php">
+				<button type="submit">Profile Page</button>
+			</form>
 			<button type="button">Edit Schedule</button>
 			<h4> Filters:<h4>
 					<select name="Class" id="class">

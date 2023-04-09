@@ -86,56 +86,56 @@ function listDisplayEvents($username)
             $spaceRemove = trim($row['Day']);
             if ($spaceRemove == 'Monday'){
                 $Event = array(
-                    "Time" => $row['Time'], 
-                    "EventType" => $row['Event Type'],
-                    "Class" => $row['Class'],
-                    "Description" => $row['Description']
+                    0 => $row['Time'], 
+                    1 => $row['Event Type'],
+                    2 => $row['Class'],
+                    3 => $row['Description']
                 );
                 array_push($Monday, $Event);
             }
             if ($spaceRemove == 'Tuesday'){
                 $Event = array(
-                    "Time" => $row['Time'],
-                    "EventType" => $row['Event Type'],
-                    "Class" => $row['Class'],
-                    "Description" => $row['Description']
+                    0 => $row['Time'], 
+                    1 => $row['Event Type'],
+                    2 => $row['Class'],
+                    3 => $row['Description']
                 );
                 array_push($Tuesday, $Event);
             }
             if ($spaceRemove == 'Wednesday'){
                 $Event = array(
-                    "Time" => $row['Time'],
-                    "EventType" => $row['Event Type'],
-                    "Class" => $row['Class'],
-                    "Description" => $row['Description']
+                    0 => $row['Time'], 
+                    1 => $row['Event Type'],
+                    2 => $row['Class'],
+                    3 => $row['Description']
                 );
                 array_push($Wednesday, $Event);
             }
             if ($spaceRemove == 'Thursday'){
                 $Event = array(
-                    "Time" => $row['Time'],
-                    "EventType" => $row['Event Type'],
-                    "Class" => $row['Class'],
-                    "Description" => $row['Description']
+                    0 => $row['Time'], 
+                    1 => $row['Event Type'],
+                    2 => $row['Class'],
+                    3 => $row['Description']
                 );
                 array_push($Thursday, $Event);
             }
             if ($spaceRemove == 'Friday'){
                 $Event = array(
-                    "Time" => $row['Time'],
-                    "EventType" => $row['Event Type'],
-                    "Class" => $row['Class'],
-                    "Description" => $row['Description']
+                    0 => $row['Time'], 
+                    1 => $row['Event Type'],
+                    2 => $row['Class'],
+                    3 => $row['Description']
                 );
                 array_push($Friday, $Event);
             }
         }
         // sort each day list by the time 
-        $sortMon = array_sort($Monday, "Time", SORT_ASC);
-        $sortTue = array_sort($Tuesday, "Time", SORT_ASC);
-        $sortWed = array_sort($Wednesday, "Time", SORT_ASC);
-        $sortThu = array_sort($Thursday, "Time", SORT_ASC);
-        $sortFri = array_sort($Friday, "Time", SORT_ASC);
+        $sortMon = array_sort($Monday, 0, SORT_ASC);
+        $sortTue = array_sort($Tuesday, 0, SORT_ASC);
+        $sortWed = array_sort($Wednesday, 0, SORT_ASC);
+        $sortThu = array_sort($Thursday, 0, SORT_ASC);
+        $sortFri = array_sort($Friday, 0, SORT_ASC);
 
         // add the sorted lists to the returned value
         array_push($list_return, $sortMon);
