@@ -81,7 +81,6 @@ function listDisplayEvents($username)
         return;
     }
     else{
-        $counter = 0;
         // Supposedly adds a dictionary to a list that will be used to output the values on the schedule page
         while ($row = mysqli_fetch_assoc($result_query)) {
             $spaceRemove = trim($row['Day']);
@@ -92,7 +91,6 @@ function listDisplayEvents($username)
                     "Class" => $row['Class'],
                     "Description" => $row['Description']
                 );
-                $count++;
                 array_push($Monday, $Event);
             }
             if ($spaceRemove == 'Tuesday'){
