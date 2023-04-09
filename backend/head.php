@@ -10,10 +10,11 @@
 
 function head($title)
 {
-    echo "
-    <meta charset=\"utf-8\">
-	<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">
-	<title>$title</title>
-    <link rel=\"stylesheet\" href=\"./css/tada.css\">
-    ";
+    $html = <<<"EOT"
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>$title</title>
+        <link rel="stylesheet" href="./css/tada.css">
+        EOT;
+    echo $html;
 }

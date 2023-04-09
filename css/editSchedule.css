@@ -1,0 +1,72 @@
+.edit-container {
+	max-width: 600px;
+	padding: 25px 50px;
+	margin: auto;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+
+	border: 2px solid black;
+	border-radius: 6px;
+}
+
+.edit-container h1 {
+	text-align: center;
+}
+
+.edit-container-inner {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+	padding-bottom: 20px;
+}
+
+.edit-schedule-menu {
+	max-width: 300px;
+}
+
+.edit-class-table {
+	width: 250px;
+	border: 2px solid black;
+	border-radius: 6px;
+	border-spacing: 0px;
+}
+.edit-class-table th {
+	background-color: black;
+	color: white;
+	height: 30px;
+}
+.event-row {
+	height: 80px;
+}
+.event-row:hover {
+	background-color: lightgray;
+}
+.event-row td {
+	padding: 10px;
+	border-top: 1px solid black;
+	border-bottom: 1px solid black;
+}
+
+.create-form-button-container {
+	display: flex;
+	justify-content: right;
+}
+.edit-form-button-container {
+	display: flex;
+	justify-content: space-between;
+}
+
+.return-link {
+	width: 100px;
+	margin: auto;
+	padding-bottom: 10px;
+	text-align: center;
+}
+
+#create-event-container form,
+#edit-event-container form {
+	display: flex;
+	flex-direction: column;
+	justify-content: left;
+}

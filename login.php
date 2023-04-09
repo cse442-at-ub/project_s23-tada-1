@@ -1,15 +1,11 @@
 <?php
-include('./backend/connection.php');
-include('./backend/user.php');
-include('./backend/log.php');
-include('./backend/head.php');
-/*
-	session_start(): Starts a session
-	Starting a session stores a key on the users browser that persists until the browser is closed.
-	Session variables can then be set on the server associated with the users session and can be accessed across all pages, or multiple PHP files.
-	Very convenient system.
-*/
+require('./backend/log.php');
 session_start();
+
+require('./backend/connection.php');
+require('./backend/user.php');
+require('./backend/head.php');
+
 
 $nameErr = $passwordErr = $generalErr = "";
 $name = $password = "";
@@ -31,8 +27,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 	if ($nameErr == "" && $passwordErr == "") {
 		// Retrieve data from database
-		$userData = "SELECT * FROM UserData WHERE Username = '$name'";
-		$result_query = mysqli_query($conn, $userData);
+		$statement = $conn->prepare("SELECT * FROM UserData WHERE Username = (?)");
+		$statement->bind_param('s', $name);
+		$statement->execute();
+		$result_query = $statement->get_result();
 		console_log($result_query);
 		if ($result_query == FALSE) {
 			console_log("Database error: " . mysqli_error($conn));

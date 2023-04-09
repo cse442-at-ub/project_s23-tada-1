@@ -1,16 +1,12 @@
 <?php
-$config = include('./backend/config.php');
-include('./backend/log.php');
-include('./backend/head.php');
-include('./backend/user.php');
-include('./backend/connection.php');
-/*
-    sessions_start(): Starts a session
-    Starting a session stores a key on the users browser that persists until the browser is closed.
-    Session variables can then be set on the server associated with the users session and can be accessed across all pages, or multiple PHP files.
-    Very convenient system.
-*/
+$config = require('./backend/config.php');
+require('./backend/log.php');
 session_start();
+
+require('./backend/head.php');
+require('./backend/user.php');
+require('./backend/connection.php');
+
 
 
 // define variables and set to empty values
@@ -29,7 +25,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		$statement = $conn->prepare("SELECT * FROM UserData WHERE Username = (?)");
 		$statement->bind_param('s', $name);
 		$statement->execute();
-		$result_query = $statement->get_result();;
+		$result_query = $statement->get_result();
 		console_log($result_query);
 		if (mysqli_num_rows($result_query) > 0) {
 			$nameErr = "Username is already taken";
@@ -57,7 +53,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	} else {
 		$password = clean_data($_POST["password"]);
 		if (!test_password($password)) {
-			$passwordErr = 'Password should be at least 8 characters in length and should include at least one upper case letter, one number, and one special character.';
+			$passwordErr = 'Password should be at least 8 characters in length and should require at least one upper case letter, one number, and one special character.';
 			console_log("Invalid password format");
 		}
 	}
@@ -66,8 +62,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	if ($nameErr == "" && $emailErr == "" && $passwordErr == "") {
 		// Makes the password
 		// Check password for correct length and characters
-		insert_user($name, $email, $password);
-		header("Location: $config->root_dir/index.php");
+		if (insert_user($name, $email, $password)) {
+			header("Location: $config->root_dir/index.php");
+		}
 	}
 }
 ?>
