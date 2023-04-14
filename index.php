@@ -53,6 +53,19 @@ console_log("Running on " . php_sapi_name());
 	echo "</table>";
 	?>
 
+	<?php
+	if(!empty($_GET["application_name"]) and !empty($_GET["application_experience"]) and !empty($_GET["application_reason"])){
+		echo "<h2>Congratulations Applcation Submitted</h2>";
+		echo "Name: ";
+		echo $_GET["application_name"];
+		echo "<br>";
+		echo "Experience: ";
+		echo $_GET["application_experience"]; 
+		echo "<br>";
+		echo "Why you want this job: ";
+		echo $_GET["application_reason"]; 
+	}
+	?>
 
 	<!-- // This is where the schedule and options are -->
 	<form method="GET" action="mySchedule.php">
