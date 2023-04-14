@@ -46,7 +46,12 @@ function handleEditForm(jsonArray) {
 	for (element of editForm.children) {
 		if (element.nodeName == "INPUT") {
 			// If the form is an input, set the value to the corresponding information
-			element.setAttribute("value", event[element.name]);
+			if (element.name == "Time") {
+				i = String(event["Time"]).indexOf(":");
+				element.setAttribute("value", event["Time"].slice(0, i));
+			} else {
+				element.setAttribute("value", event[element.name]);
+			}
 		} else if (element.nodeName == "SELECT") {
 			// If the element is a select statement, deselect all options and select the matching option
 			for (option of element.children) {
