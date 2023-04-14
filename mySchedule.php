@@ -287,6 +287,9 @@
 			<form method="GET" action="editSchedule.php">
 				<button type="submit">Edit Schedule</button>
 			</form>
+			<form metho="GET" action="jobBoard.php">
+				<button type="submit">Job Board</button>
+			</form>
 			<h4> Filters:<h4>
 					<select name="Class" id="class">
 						<option value="cse101">Class</option>
