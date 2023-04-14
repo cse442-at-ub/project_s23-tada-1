@@ -284,7 +284,9 @@
 			<form method="GET" action="profile.php">
 				<button type="submit">Profile Page</button>
 			</form>
-			<button type="button">Edit Schedule</button>
+			<form method="GET" action="editSchedule.php">
+				<button type="submit">Edit Schedule</button>
+			</form>
 			<h4> Filters:<h4>
 					<select name="Class" id="class">
 						<option value="cse101">Class</option>
