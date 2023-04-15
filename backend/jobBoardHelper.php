@@ -24,7 +24,7 @@ function listJobs($username)
         $title = $job["Title"];
         $professor = $job["Professor"];
         $description = $job["Description"];
-        $id = urlencode($job["Id"]);
+        $id = urlencode($job["id"]);
         $html = <<<"EOT"
             <tr class="job-row">
                 <td>
