@@ -74,7 +74,7 @@ console_log("Running on " . php_sapi_name());
 		$conn = mysqli_connect("oceanus.cse.buffalo.edu:3306", "khlam", "50338576", "cse442_2023_spring_team_p_db");
 
 
-		$query = "INSERT INTO jobApplications(name, experience, reason) VALUES ($app_name, $app_experience, $app_reason)";
+		$query = "INSERT INTO jobApplications(Name, Experience, Reason) VALUES ($app_name, $app_experience, $app_reason)";
 
 		mysqli_query($conn, $query);
 		mysqli_close($conn);
