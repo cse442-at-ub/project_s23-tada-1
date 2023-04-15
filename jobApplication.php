@@ -25,15 +25,23 @@ require('./backend/head.php');
             
             $job_id = urldecode($_GET["id"]);
             // $job_serve = $conn->prepare("SELECT $job_id FROM `Jobs`");
-            $query = "SELECT $job_id FROM `Jobs`";
+            $query = "SELECT id FROM `Jobs`";
             $job_serve = mysqli_query($conn, $query);
             $job_info = mysqli_fetch_array($job_serve, MYSQLI_ASSOC);
+            
+            $job_title = "";
+            $job_professor = "";
+            $job_description = "";
 
-            $job_title = $job_info["Title"];
-            $job_professor = $job_info["Professor"];
-            $job_description = $job_info["Description"];
+            foreach ($job_info as $jobs){
+                if ($jobs["id"] == $job_id){
+                    $job_title = $jobs["Title"];
+                    $job_professor = $jobs["Professor"];
+                    $job_description = $jobs["Description"];
+                }
+            }            
 
-
+        
             echo "Title: ";
             echo $job_title;
             echo "<br>";
