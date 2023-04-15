@@ -5,14 +5,14 @@
     insert_user
     Inserts a user into the database
 */
-function insert_user($name, $email, $password)
+function insert_user($name, $username, $email, $password, $aboutMe, $exp1, $exp2)
 {
     require('connection.php');
     // Hash password
     $hashed_password = password_hash($password, PASSWORD_BCRYPT);
     // Inserts it into the database. If it couldn't for some reason, it'll print out an error message
-    $statement = $conn->prepare("INSERT INTO UserData (Username, Email, Password) VALUES (?, ?, ?)");
-    $statement->bind_param('sss', $name, $email, $hashed_password);
+    $statement = $conn->prepare("INSERT INTO UserData (Name, Username, Email, Password, AboutMe, Experience1, Experience2) VALUES (?, ?, ?, ?, ?, ?, ?)");
+    $statement->bind_param('sssssss', $name, $username, $email, $hashed_password, $aboutMe, $exp1, $exp2);
     $statement->execute();
     if (mysqli_error($conn)) {
         console_log("Error: " . mysqli_error($conn));

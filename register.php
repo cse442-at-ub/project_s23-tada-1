@@ -10,8 +10,8 @@ require('./backend/connection.php');
 
 
 // define variables and set to empty values
-$nameErr = $emailErr = $passwordErr = "";
-$name = $email = $password = "";
+$nameErr = $emailErr = $passwordErr = $usernameErr= "";
+$name = $email = $password = $aboutMe = $username = $exp1 = $exp2 = "";
 
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -19,16 +19,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		$nameErr = "Username is required";
 		console_log("Username not entered");
 	} else {
-		$name = clean_data($_POST["username"]);
+		$username = clean_data($_POST["username"]);
 
 		// Checking for duplicate username
 		$statement = $conn->prepare("SELECT * FROM UserData WHERE Username = (?)");
-		$statement->bind_param('s', $name);
+		$statement->bind_param('s', $username);
 		$statement->execute();
 		$result_query = $statement->get_result();
 		console_log($result_query);
 		if (mysqli_num_rows($result_query) > 0) {
-			$nameErr = "Username is already taken";
+			$usernameErr = "Username is already taken";
 			$data = $result_query->fetch_assoc()['Username'];
 			console_log("Attempted login with existing username: $data");
 		}
@@ -57,16 +57,51 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 			console_log("Invalid password format");
 		}
 	}
+	function test_input($data) {
+		$data = trim($data);
+		$data = stripslashes($data);
+		$data = htmlspecialchars($data);
+		return $data;
+	}
 
+	if (empty($_POST["name"])) {
+		$nameErr = "Name is required";
+	} else {
+		$name = test_input($_POST["name"]);
+		// check if name only contains letters and whitespace
+		if (!preg_match("/^[a-zA-Z-' ]*$/",$name)) {
+		  $nameErr = "Only letters and white space allowed";
+		}
+	}
+
+	if (empty($_POST["aboutMe"])) {
+		$aboutMe = "";
+	} else {
+		$aboutMe = test_input($_POST["aboutMe"]);
+	}
+	
+	if (empty($_POST["exp1"])) {
+		$exp1 = "";
+	} else {
+		$exp1 = test_input($_POST["exp1"]);
+	}
+	
+	if (empty($_POST["exp2"])) {
+		$exp2 = "";
+	} else {
+		$exp2 = test_input($_POST["exp2"]);
+	}
 
 	if ($nameErr == "" && $emailErr == "" && $passwordErr == "") {
 		// Makes the password
 		// Check password for correct length and characters
-		if (insert_user($name, $email, $password)) {
+		if (insert_user($name, $username, $email, $password, $aboutMe, $exp1, $exp2)) {
 			header("Location: $config->root_dir/index.php");
 		}
 	}
 }
+
+
 ?>
 
 <!DOCTYPE HTML>
@@ -80,8 +115,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	<h2>register here !</h2>
 	<p><span class="error">* required field</span></p>
 	<form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
-		Username: <input type="text" name="username" value="<?php echo $name; ?>">
-		<span class="error">* <?php echo $nameErr; ?></span>
+		Name: <input type="text" name="name" value="<?php echo $name;?>">
+		<span class="error">* <?php echo $nameErr;?></span>
+		<br><br>
+		Username: <input type="text" name="username" value="<?php echo $username; ?>">
+		<span class="error">* <?php echo $usernameErr; ?></span>
 		<br><br>
 		Email: <input type="text" name="email" value="<?php echo $email; ?>">
 		<span class="error">* <?php echo $emailErr; ?></span>
@@ -89,8 +127,30 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		Password: <input type="password" name="password" value="<?php echo $password; ?>">
 		<span class="error">* <?php echo $passwordErr; ?></span>
 		<br><br>
+		About ME!: <textarea name="aboutMe" rows="5" cols="40"><?php echo $aboutMe;?></textarea>
+		<br><br>
+		Experience 1: <textarea name="exp1" rows="5" cols="40"><?php echo $exp1;?></textarea>
+		<br><br>
+		Experience 2: <textarea name="exp2" rows="5" cols="40"><?php echo $exp2;?></textarea>
+		<br><br>
 		<input type="submit" name="register" value="Register">
 	</form>
+
+	<?php
+		echo "<h2>Your Input:</h2>";
+		echo $name;
+		echo "<br>";
+		echo $username;
+		echo "<br>";
+		echo $email;
+		echo "<br>";
+		echo $aboutMe;
+		echo "<br>";
+		echo $exp1;
+		echo "<br>";
+		echo $exp2;
+		echo "<br>";
+	?>
 </body>
 
 </html>
