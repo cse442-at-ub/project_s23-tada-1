@@ -1,11 +1,12 @@
-<!DOCTYPE html>
-
 <?php
 $config = require('./backend/config.php');
 require('./backend/session.php');
 require('./backend/user.php');
 require('./backend/log.php');
 require('./backend/connection.php');
+require('./backend/head.php');
+
+session_start();
 
 $valueUser = $valueEmail = $valueName = $valueAboutMe = $valueExp1 = $valueExp2 = "";
 $valNameErr = $valEmailErr = $valPasswordErr = $valUsernameErr= "";
@@ -86,53 +87,67 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 ?>
 
-<h1> My Profile </h1>
+<!DOCTYPE html>
 
-<?php
-    session_start();
-    if (isset($_SESSION["username"]) && !empty($_SESSION["username"])) {
-        $username = $_SESSION["username"];
-        $query = "SELECT * FROM UserData";
-        $result = $conn -> query($query);
-        while ($row = $result -> fetch_assoc()){
-            if ($username == $row['Username']){
-                $valueUser = $row['Username'];
-                // echo "Username: ". "<input type='post' value ='".$valueUser."'>";
-                // echo "<br>";
-                $valueEmail = $row['Email'];
-                // echo "Email: ". "<input type='post' value ='".$valueEmail."'>";
-                // echo "<br>";
-                $valueName = $row['Name'];
-                // echo "Name: ". "<input type='post' value ='".$valueName."'>";
-                // echo "<br>";
+<head>
+	<?php head('Profile Page') ?>
+	<link  rel="stylesheet" type="text/css" href="css/profile.css" />
+</head>
 
-                $valueAboutMe = $row['AboutMe'];
-                // echo "About Me: ". "<input type='post' value ='".$valueAboutMe."'>";
-                // echo "<br>";
+<body>
+	<div class="page-top-view">
+		<ul class="nav justify-content-center">
+			<li> <h2 class="logo"> TADA!</h2> </li>
+		</ul>
+  	</div>
 
-                $valueExp1 = $row['Experience1'];
-                // echo "Experience 1: ". "<input type='post' value ='".$valueExp1."'>";
-                // echo "<br>";
-                
-                $valueExp2 = $row['Experience2'];
-                // echo "Experience 2: ". "<input type='post' value ='".$valueExp2."'>";
-                // echo "<br>";
-            }
-            
-        }
-    }
+	<div class="page-container">
+		<div class="outlined-box-profile">
+			<h1> My Profile </h1>
+			<?php
+				if (isset($_SESSION["username"]) && !empty($_SESSION["username"])) {
+					$username = $_SESSION["username"];
+					$query = "SELECT * FROM UserData";
+					$result = $conn -> query($query);
+					while ($row = $result -> fetch_assoc()){
+						if ($username == $row['Username']){
+							$valueUser = $row['Username'];
+							// echo "Username: ". "<input type='post' value ='".$valueUser."'>";
+							// echo "<br>";
+							$valueEmail = $row['Email'];
+							// echo "Email: ". "<input type='post' value ='".$valueEmail."'>";
+							// echo "<br>";
+							$valueName = $row['Name'];
+							// echo "Name: ". "<input type='post' value ='".$valueName."'>";
+							// echo "<br>";
 
-    $html = <<<"EOT"
-        <p>Username: $valueUser</p>
-        <p>Email: $valueEmail</p>
-        <p>Name: $valueName</p>
-        <p>About Me: $valueAboutMe</p>
-        <p>Experience 1: $valueExp1</p>
-        <p>Experience 2: $valueExp2</p>
-        EOT;
-    echo $html;
-?>
+							$valueAboutMe = $row['AboutMe'];
+							// echo "About Me: ". "<input type='post' value ='".$valueAboutMe."'>";
+							// echo "<br>";
 
+							$valueExp1 = $row['Experience1'];
+							// echo "Experience 1: ". "<input type='post' value ='".$valueExp1."'>";
+							// echo "<br>";
+							
+							$valueExp2 = $row['Experience2'];
+							// echo "Experience 2: ". "<input type='post' value ='".$valueExp2."'>";
+							// echo "<br>";
+						}
+						
+					}
+				}
 
-
+				$html = <<<"EOT"
+					<p>Username: $valueUser</p>
+					<p>Email: $valueEmail</p>
+					<p>Name: $valueName</p>
+					<p>About Me: $valueAboutMe</p>
+					<p>Experience 1: $valueExp1</p>
+					<p>Experience 2: $valueExp2</p>
+					EOT;
+				echo $html;
+			?>
+		</div>
+	</div>
+</body>
 </html>

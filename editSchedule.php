@@ -30,7 +30,7 @@ require("./backend/head.php");
 				<p> To add a new event, press the Create Event button below. If you would like to edit or remove an existing event, click on one of your events in the list on the right.</p>
 				<p> For time, input the hour in 24 hour time between 8:00 through 17:00</p>
 				<div class="create-event-button-container">
-					<button type="button" class="base-button color-button create-event-button" onclick="showCreateEvent()">Create event</button>
+					<button type="button" class="base-button green-button create-event-button" onclick="showCreateEvent()">Create event</button>
 				</div>
 				<div id="event-form-container">
 					<div id="create-event-container" class="hide">

@@ -109,35 +109,49 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <head>
 	<?php head('Register Page'); ?>
+	<link  rel="stylesheet" type="text/css" href="css/style.css" />
 </head>
 
 <body>
-	<h2>register here !</h2>
-	<p><span class="error">* required field</span></p>
-	<form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
-		Name: <input type="text" name="name" value="<?php echo $name;?>">
-		<span class="error">* <?php echo $nameErr;?></span>
-		<br><br>
-		Username: <input type="text" name="username" value="<?php echo $username; ?>">
-		<span class="error">* <?php echo $usernameErr; ?></span>
-		<br><br>
-		Email: <input type="text" name="email" value="<?php echo $email; ?>">
-		<span class="error">* <?php echo $emailErr; ?></span>
-		<br><br>
-		Password: <input type="password" name="password" value="<?php echo $password; ?>">
-		<span class="error">* <?php echo $passwordErr; ?></span>
-		<br><br>
-		About ME!: <textarea name="aboutMe" rows="5" cols="40"><?php echo $aboutMe;?></textarea>
-		<br><br>
-		Experience 1: <textarea name="exp1" rows="5" cols="40"><?php echo $exp1;?></textarea>
-		<br><br>
-		Experience 2: <textarea name="exp2" rows="5" cols="40"><?php echo $exp2;?></textarea>
-		<br><br>
-		<input type="submit" name="register" value="Register">
-	</form>
-
+	<div class="page-top-view">
+		<ul class="nav justify-content-center">
+			<li> <h2 class="logo"> TADA!</h2> </li>
+		</ul>
+  	</div>
+	
+	<div class='outlined-box-register'>
+		<h2 class="login-title">Register Here!</h2>
+		<p><span class="error">* required field</span></p>
+		<form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
+			Name <br>
+			<input class="login-info-box" type="text" name="username" value="<?php echo $username; ?>">
+			<span class="error">* <?php echo $usernameErr; ?></span>
+			<br><br>
+			Username <br>
+			<input class="login-info-box" type="text" name="username" value="<?php echo $name; ?>">
+			<span class="error">* <?php echo $nameErr; ?></span>
+			<br><br>
+			Email <br>
+			<input class="login-info-box" type="text" name="email" value="<?php echo $email; ?>">
+			<span class="error">* <?php echo $emailErr; ?></span>
+			<br><br>
+			Password <br>
+			<input class="login-info-box" type="password" name="password" value="<?php echo $password; ?>">
+			<span class="error">* <?php echo $passwordErr; ?></span>
+			<br><br>
+			About Me
+			<textarea class="login-info-box" name="aboutMe" rows="5" cols="40"><?php echo $aboutMe;?></textarea>
+			<br><br>
+			Experience 1: <textarea class="login-info-box"  name="exp1" rows="5" cols="40"><?php echo $exp1;?></textarea>
+			<br><br>
+			Experience 2: <textarea class="login-info-box"  name="exp2" rows="5" cols="40"><?php echo $exp2;?></textarea>
+			<br><br>
+			<input class="base-button green-button" type="submit" name="register" value="Register">
+			<br><br>
+			Already have an account? Log in <a href="login.php">Here!</a>
+		</form>
+	</div>
 	<?php
-		echo "<h2>Your Input:</h2>";
 		echo $name;
 		echo "<br>";
 		echo $username;

@@ -8,15 +8,20 @@
 	border-radius: 6px;
 	font-weight: bold;
 	padding: 10px;
-	margin: 15px 0px;
 }
+
+.base-button:hover {
+	cursor: grab;
+	color: white;
+}
+
 .color-button {
 	background-color: black;
 	color: white;
 }
 .green-button {
 	background-color: rgb(47, 255, 64);
-	color: white;
+	color: darkgreen;
 }
 .red-button {
 	background: rgb(235, 20, 20);
@@ -24,7 +29,7 @@
 }
 
 h1 {
-	margin: 10px 0 40px 0;
+	margin: 10px 0 0px 0;
 }
 
 h2,
