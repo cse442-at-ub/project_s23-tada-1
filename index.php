@@ -54,8 +54,8 @@ console_log("Running on " . php_sapi_name());
 	?>
 
 	<?php
-	// if(!empty($_GET["application_name"]) and !empty($_GET["application_experience"]) and !empty($_GET["application_reason"])){
-	// 	echo "<h2>Congratulations Applcation Submitted</h2>";
+	if(!empty($_GET["application_name"]) and !empty($_GET["application_experience"]) and !empty($_GET["application_reason"])){
+		echo "<h2>Congratulations Applcation Submitted</h2>";
 	// 	echo "Name: ";
 	// 	echo $_GET["application_name"];
 	// 	echo "<br>";
@@ -64,7 +64,7 @@ console_log("Running on " . php_sapi_name());
 	// 	echo "<br>";
 	// 	echo "Why you want this job: ";
 	// 	echo $_GET["application_reason"]; 
-
+	}
 
 		$app_name = $_GET["application_name"];
 		$app_experience = $_GET["application_experience"];
