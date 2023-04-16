@@ -1,0 +1,53 @@
+body{
+    text-decoration: none;
+    margin: 0 0 0 0;   
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.page-container {
+	background-color: gray;
+	text-align: center;
+	margin: auto;
+	padding: 15px 0px 30px 0px;
+	width: 90vw;
+
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+
+	border-radius: 10px;
+}
+.page-container h1 {
+	color: white;
+}
+
+#job-table {
+	width: 70vw;
+	margin: auto;
+	border-collapse: collapse;
+}
+
+#job-table,
+tr,
+td {
+	border: 1px solid black;
+	color: black;
+	background: white;
+}
+
+th {
+	background-color: rgb(205, 205, 205);
+	height: 50px;
+}
+#title {
+	width: 20vw;
+}
+#employer {
+	width: 10vw;
+}
+#description {
+	width: 40vw;
+}
+#button {
+	width: 10vw;
+}

@@ -17,29 +17,33 @@ require("./backend/head.php");
 
 <head>
     <?php head("Job Board"); ?>
-    <script src="./js/jobBoard.js"></script>
+    <link rel="stylesheet" href="./css/jobBoard.css">
 </head>
 
 <body>
-    <div id="job-board-container">
-        <table id="job-table">
-            <tr>
-                <th>
-                    Title
-                </th>
-                <th>
-                    Employer
-                </th>
-                <th>
-                    Description
-                </th>
-                <th>
+    <div class="page-container">
+        <h1>Job Board</h1>
+        <div id="job-board-container">
+            <table id="job-table">
+                <tr>
+                    <th id="title">
+                        Title
+                    </th>
+                    <th id="employer">
+                        Employer
+                    </th>
+                    <th id="description">
+                        Description
+                    </th>
+                    <th id="button">
 
-                </th>
-            </tr>
-            <?php listJobs($username); ?>
-        </table>
+                    </th>
+                </tr>
+                <?php listJobs($username); ?>
+            </table>
+        </div>
     </div>
+
 </body>
 
 </html>
