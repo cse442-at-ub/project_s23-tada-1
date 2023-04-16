@@ -39,7 +39,7 @@ console_log("Running on " . php_sapi_name());
 	<?php
 	// Retrieving usernames
 	$result = mysqli_query($conn, "SELECT Username FROM UserData");
-	mysqli_close($conn);
+	// mysqli_close($conn);
 
 	echo "<table border='1'>
                 <tr>
@@ -53,6 +53,36 @@ console_log("Running on " . php_sapi_name());
 	echo "</table>";
 	?>
 
+	<?php
+	if (!empty($_GET["application_name"]) and !empty($_GET["application_experience"]) and !empty($_GET["application_reason"])) {
+		echo "<h2>Congratulations Application Submitted</h2>";
+		// 	echo "Name: ";
+		// 	echo $_GET["application_name"];
+		// 	echo "<br>";
+		// 	echo "Experience: ";
+		// 	echo $_GET["application_experience"]; 
+		// 	echo "<br>";
+		// 	echo "Why you want this job: ";
+		// 	echo $_GET["application_reason"]; 
+
+
+		$app_name = $_GET["application_name"];
+		$app_experience = $_GET["application_experience"];
+		$app_reason = $_GET["application_reason"];
+		$app_id = $_GET["getId"];
+		settype($app_id, "integer");
+		// console_log(gettype($app_id));
+
+		// $query = "INSERT INTO JobApp (id, Name, Experience, Reason) VALUES (?, ?, ?, ?)";
+		$statement = $conn->prepare("INSERT INTO JobApp (id, Name, Experience, Reason) VALUES (?, ?, ?, ?)");
+		$statement->bind_param('isss', $app_id, $app_name, $app_experience, $app_reason);
+		$statement->execute();
+		if (mysqli_error($conn)) {
+			console_log("Error: " . mysqli_error($conn));
+		}
+		mysqli_close($conn);
+	}
+	?>
 
 	<!-- // This is where the schedule and options are -->
 	<form method="GET" action="mySchedule.php">

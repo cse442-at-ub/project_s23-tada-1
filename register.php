@@ -121,7 +121,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 			</li>
 		</ul>
 	</div>
-
 	<div class='outlined-box-register'>
 		<h2 class="login-title">Register Here!</h2>
 		<p><span class="error">* required field</span></p>

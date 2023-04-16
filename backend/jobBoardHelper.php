@@ -19,12 +19,12 @@ function listJobs($username)
     }
 
     $jobs = array();
-    $id = 0;
     while (($job = mysqli_fetch_assoc($result_query))) {
         array_push($jobs, $job);
         $title = $job["Title"];
         $professor = $job["Professor"];
         $description = $job["Description"];
+        $id = urlencode($job["id"]);
         $html = <<<"EOT"
             <tr class="job-row">
                 <td>
@@ -37,14 +37,11 @@ function listJobs($username)
                     $description
                 </td>
                 <td>
-                <form>
-                    <input type="submit" class="base-button green-button" id="apply-button" name="Apply" value="Apply">
-                </form>
+                    <button type="submit" class="base-button green-button" id="apply-button" onClick="apply(this)" data-id="$id">Apply</button>
                 </td>
             </tr>
             EOT;
         echo $html;
-        $id += 1;
     }
     console_log(json_encode($jobs));
 }
