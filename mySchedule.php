@@ -1,8 +1,48 @@
+<?php
+/*
+	Starts a session
+	Starting a session stores a key on the users browser that persists until the browser is closed.
+	Session variables can then be set on the server associated with the users session and can be accessed across all pages, or multiple PHP files.
+	Very convenient system.
+*/
+require('./backend/session.php');
+$username = startSession();
+if ($username == "") {	// If user isn't logged in go back to home page
+	header("Location: index.php");
+}
+#commit message git commit -m "First try at displaying any content for the schedle
+#40" -m 
+require('./backend/connection.php');
+require('./database/eventDisplay.php');
+require('./backend/head.php');
+
+//echo "hello";
+
+$selectedClass = "None";
+$selectedType = "None";
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
+	if (isset($_POST["Class"])) {
+		$selectedClass = $_POST["Class"];
+	}
+	if (isset($_POST["Type"])) {
+		$selectedType = $_POST["Type"];
+	}
+}
+
+$retListDisplay = listDisplayEvents($username, $selectedClass, $selectedType); #raw info
+$funcList = $retListDisplay[0];
+$classes = $retListDisplay[1];
+$types = $retListDisplay[2];
+?>
+
 <!DOCTYPE HTML>
 <html>
 
 <head>
-	<h1>The Schedules Page !!!!!</h1>
+	<?php head("My Schedule") ?>
+	<link rel="stylesheet" type="text/css" href="css/mySchedule.css" />
+	<link rel="stylesheet" type="text/css" href="css/tada.css" />
+	<script src="./js/mySchedule.js"></script>
 	<style>
 		table,
 		th,
@@ -18,28 +58,28 @@
 	</style>
 </head>
 
-<body>
-	<?php
-	/*
-        Starts a session
-        Starting a session stores a key on the users browser that persists until the browser is closed.
-        Session variables can then be set on the server associated with the users session and can be accessed across all pages, or multiple PHP files.
-        Very convenient system.
-    */
-	session_start();
+<body <?php echo "onload='selector(\"$selectedClass\", \"$selectedType\")'" ?>>
+	<div class="page-top-view">
+		<ul class="nav justify-content-center">
+			<li>
+				<h2 class="logo"> TADA! </h2>
+			</li>
+		</ul>
+	</div>
 
-	#commit message git commit -m "First try at displaying any content for the schedle
-	#40" -m 
-	include('./backend/connection.php');
-	// include('./backend/log.php');
-	include('./database/eventDisplay.php');
-
-	//echo "hello";
-
-	if (isset($_SESSION["username"]) && !empty($_SESSION["username"])) {
-		$username = $_SESSION["username"];
-		$funcList = listDisplayEvents($username); #raw info
-
+	<div class="page-container">
+		<div class="schedule-table-top-view">
+			<div class="schedule-table-top-elements">
+				<h2> My Schedule </h2>
+			</div>
+		</div>
+		<div class="schedule-table-top-buttons">
+			<form method="GET" action="editSchedule.php">
+				<div class="schedule-table-top-elements"> <button type="submit" class="edit-schedule-button base-button green-button">Edit Schedule</button> </div>
+			</form>
+			<div class="schedule-table-top-elements"> <?php showFilters($classes, $types, $selectedClass, $selectedType); ?> </div>
+		</div>
+		<?php
 		#bertha
 		$fillInList = array(
 			array(array(" "), array(" "), array(" "), array(" "), array(" "), array(" "), array(" "), array(" "), array(" "), array(" "), array(" "), array(" "), array(" "), array(" "), array(" ")),
@@ -167,10 +207,9 @@
 		for ($f = 0; $f < 5; $f++) {
 			//echo "Event: " . strval($eightam[$f]);
 			if ($eightam[$f][0] == " ") {
-				//echo "Got in here";
 				echo "<td>" . strval($eightam[$f][0]) . "</td>";
 			} else {
-				echo "<td>" . strval($eightam[$f][2]) . "</td>";
+				echo "<td>" . strval($eightam[$f][2]), "-", strval($eightam[$f][1]) . "</td>";
 			}
 		}
 		echo "</tr>";
@@ -182,7 +221,7 @@
 			if ($nineam[$f][0] == " ") {
 				echo "<td>" . strval($nineam[$f][0]) . "</td>";
 			} else {
-				echo "<td>" . strval($nineam[$f][2]) . "</td>";
+				echo "<td>" . strval($nineam[$f][2]), "-", strval($nineam[$f][1]) . "</td>";
 			}
 		}
 		echo "</tr>";
@@ -193,7 +232,7 @@
 			if ($tenam[$f][0] == " ") {
 				echo "<td>" . strval($tenam[$f][0]) . "</td>";
 			} else {
-				echo "<td>" . strval($tenam[$f][2]) . "</td>";
+				echo "<td>" . strval($tenam[$f][2]), "-", strval($tenam[$f][1]) . "</td>";
 			}
 		}
 		echo "</tr>";
@@ -204,7 +243,7 @@
 			if ($elevenam[$f][0] == " ") {
 				echo "<td>" . strval($elevenam[$f][0]) . "</td>";
 			} else {
-				echo "<td>" . strval($elevenam[$f][2]) . "</td>";
+				echo "<td>" . strval($elevenam[$f][2]), "-", strval($elevenam[$f][1]) . "</td>";
 			}
 		}
 		echo "</tr>";
@@ -215,7 +254,7 @@
 			if ($twelvepm[$f][0] == " ") {
 				echo "<td>" . strval($twelvepm[$f][0]) . "</td>";
 			} else {
-				echo "<td>" . strval($twelvepm[$f][2]) . "</td>";
+				echo "<td>" . strval($twelvepm[$f][2]), "-", strval($twelvepm[$f][1]) . "</td>";
 			}
 		}
 		echo "</tr>";
@@ -226,7 +265,7 @@
 			if ($onepm[$f][0] == " ") {
 				echo "<td>" . strval($onepm[$f][0]) . "</td>";
 			} else {
-				echo "<td>" . strval($onepm[$f][2]) . "</td>";
+				echo "<td>" . strval($onepm[$f][2]), "-", strval($onepm[$f][1]) . "</td>";
 			}
 		}
 		echo "</tr>";
@@ -237,7 +276,7 @@
 			if ($twopm[$f][0] == " ") {
 				echo "<td>" . strval($twopm[$f][0]) . "</td>";
 			} else {
-				echo "<td>" . strval($twopm[$f][2]) . "</td>";
+				echo "<td>" . strval($twopm[$f][2]), "-", strval($twopm[$f][1]) . "</td>";
 			}
 		}
 		echo "</tr>";
@@ -248,7 +287,7 @@
 			if ($threepm[$f][0] == " ") {
 				echo "<td>" . strval($threepm[$f][0]) . "</td>";
 			} else {
-				echo "<td>" . strval($threepm[$f][2]) . "</td>";
+				echo "<td>" . strval($threepm[$f][2]), "-", strval($threepm[$f][1]) . "</td>";
 			}
 		}
 		echo "</tr>";
@@ -259,7 +298,7 @@
 			if ($fourpm[$f][0] == " ") {
 				echo "<td>" . strval($fourpm[$f][0]) . "</td>";
 			} else {
-				echo "<td>" . strval($fourpm[$f][2]) . "</td>";
+				echo "<td>" . strval($fourpm[$f][2]), "-", strval($fourpm[$f][1]) . "</td>";
 			}
 		}
 		echo "</tr>";
@@ -270,42 +309,23 @@
 			if ($fivepm[$f][0] == " ") {
 				echo "<td>" . strval($fivepm[$f][0]) . "</td>";
 			} else {
-				echo "<td>" . strval($fivepm[$f][2]) . "</td>";
+				echo "<td>" . strval($fivepm[$f][2]), "-", strval($fivepm[$f][1]) . "</td>";
 			}
 		}
 		echo "</tr>";
 		echo "</table>";
-	}
 
-	?>
+		?>
 
-
-	<h2>Change My Schedule<h2>
+		<div class="schedule-table-bottom-view">
 			<form method="GET" action="profile.php">
-				<button type="submit">Profile Page</button>
-			</form>
-			<form method="GET" action="editSchedule.php">
-				<button type="submit">Edit Schedule</button>
+				<div class="schedule-table-bottom-elements"> <button class="base-button green-button" type="submit">Profile Page</button> </div>
 			</form>
 			<form metho="GET" action="jobBoard.php">
-				<button type="submit">Job Board</button>
+				<div class="schedule-table-bottom-elements"> <button class="base-button green-button" type="submit">Job Board</button> </div>
 			</form>
-			<h4> Filters:<h4>
-					<select name="Class" id="class">
-						<option value="cse101">Class</option>
-						<option value="cse101">CSE 101</option>
-						<option value="cse115">CSE 115</option>
-						<option value="cse220">CSE 220</option>
-						<option value="cse250">CSE 250</option>
-					</select>
-					<select name="EventType" id="event-type">
-						<option value="lecture">Event Type</option>
-						<option value="lecture">Lecture</option>
-						<option value="office-hours">Office Hours</option>
-						<option value="recitation">Recitation</option>
-					</select>
-					<table>
-
+		</div>
+	</div>
 </body>
 
 </html>

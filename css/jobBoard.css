@@ -1,3 +1,9 @@
+body{
+    text-decoration: none;
+    margin: 0 0 0 0;   
+    font-family: Arial, Helvetica, sans-serif;
+}
+
 .page-container {
 	background-color: gray;
 	text-align: center;

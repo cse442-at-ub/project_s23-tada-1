@@ -1,5 +1,6 @@
 <?php
 require('./backend/log.php');
+
 session_start();
 
 require('./backend/connection.php');
@@ -56,21 +57,35 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <head>
 	<?php head('Login Page'); ?>
+	<link  rel="stylesheet" type="text/css" href="css/style.css" />
 </head>
 
 <body>
-	<h2> Login Page </h2>
-	<form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
-		Username: <input type="text" name="username" value="<?php echo $name; ?>">
-		<span class="error">* <?php echo $nameErr; ?></span>
-		<br><br>
-		Password: <input type="password" name="password" value="<?php echo $password; ?>">
-		<span class="error">* <?php echo $passwordErr; ?></span>
-		<br><br>
-		<span class="error"><?php echo $generalErr; ?></span>
-		<br><br>
-		<input type="submit" name="login" value="Login">
-	</form>
+	<!-- Navigation -->
+	<div class="page-top-view">
+		<ul class="nav justify-content-center">
+			<li> <h2 class="logo">TADA!</h2> <li>
+		</ul>
+  	</div>
+	
+	
+	<div class='outlined-box-login' >
+		<h2 class="login-title"> Login </h2>
+		<form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
+			Username <br>
+			<input class="login-info-box" type="text" name="username" value="<?php echo $name; ?>">
+			<span class="error">* <?php echo $nameErr; ?></span>
+			<br><br>
+			Password <br>
+			<input class="login-info-box" type="password" name="password" value="<?php echo $password; ?>">
+			<span class="error">* <?php echo $passwordErr; ?></span>
+			<br><br>
+			<span class="error"><?php echo $generalErr; ?></span>
+			<input class="base-button green-button" type="submit" name="login" value="Login">
+			<br><br>
+			Don't have an account? Sign Up <a href="register.php">Here!</a>
+		</form>
+	</div>
 </body>
 
 </html>
