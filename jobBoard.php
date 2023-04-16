@@ -17,6 +17,7 @@ require("./backend/head.php");
 
 <head>
     <?php head("Job Board"); ?>
+    <script src="./js/jobBoard.js"></script>
     <link rel="stylesheet" href="./css/jobBoard.css">
 </head>
 
