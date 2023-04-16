@@ -39,7 +39,7 @@ console_log("Running on " . php_sapi_name());
 	<?php
 	// Retrieving usernames
 	$result = mysqli_query($conn, "SELECT Username FROM UserData");
-	mysqli_close($conn);
+	// mysqli_close($conn);
 
 	echo "<table border='1'>
                 <tr>
@@ -54,31 +54,33 @@ console_log("Running on " . php_sapi_name());
 	?>
 
 	<?php
-	if(!empty($_GET["application_name"]) and !empty($_GET["application_experience"]) and !empty($_GET["application_reason"])){
-		echo "<h2>Congratulations Applcation Submitted</h2>";
-		echo "Name: ";
-		echo $_GET["application_name"];
-		echo "<br>";
-		echo "Experience: ";
-		echo $_GET["application_experience"]; 
-		echo "<br>";
-		echo "Why you want this job: ";
-		echo $_GET["application_reason"]; 
+	// if(!empty($_GET["application_name"]) and !empty($_GET["application_experience"]) and !empty($_GET["application_reason"])){
+	// 	echo "<h2>Congratulations Applcation Submitted</h2>";
+	// 	echo "Name: ";
+	// 	echo $_GET["application_name"];
+	// 	echo "<br>";
+	// 	echo "Experience: ";
+	// 	echo $_GET["application_experience"]; 
+	// 	echo "<br>";
+	// 	echo "Why you want this job: ";
+	// 	echo $_GET["application_reason"]; 
 
 
 		$app_name = $_GET["application_name"];
 		$app_experience = $_GET["application_experience"];
 		$app_reason = $_GET["application_reason"];
+		$app_id = $_GET["getId"];
+		settype($app_id, "integer");
+		// console_log(gettype($app_id));
 
-
-		$conn = mysqli_connect("oceanus.cse.buffalo.edu:3306", "khlam", "50338576", "cse442_2023_spring_team_p_db");
-
-
-		$query = "INSERT INTO jobApplications(Name, Experience, Reason) VALUES ($app_name, $app_experience, $app_reason)";
-
-		mysqli_query($conn, $query);
+		// $query = "INSERT INTO JobApp (id, Name, Experience, Reason) VALUES (?, ?, ?, ?)";
+		$statement = $conn->prepare("INSERT INTO JobApp (id, Name, Experience, Reason) VALUES (?, ?, ?, ?)");
+		$statement->bind_param('isss', $app_id, $app_name, $app_experience, $app_reason);
+		$statement->execute();
+		if (mysqli_error($conn)) {
+			console_log("Error: " . mysqli_error($conn));
+		}
 		mysqli_close($conn);
-	}
 	?>
 
 	<!-- // This is where the schedule and options are -->

@@ -3,7 +3,7 @@ require('./backend/head.php');
 ?>
 <!DOCTYPE html>
 <html>
-    <head><<?php head("Job Application")?>/head>
+    <head><?php head("Job Application")?></head>
     <body>
 
         <?php
@@ -13,6 +13,7 @@ require('./backend/head.php');
             if ($_SERVER["REQUEST_METHOD"] === "GET") {
                 if (isset($_GET["id"])) {
                     console_log($_GET["id"]);
+                    //console_log("hello");
                     // echo $_GET["id"];
                     // echo urldecode($_GET["id"]);
                     // echo $_GET["table"];
@@ -20,26 +21,36 @@ require('./backend/head.php');
             }
             // echo "Job Application Details: ";
             // echo $_GET["id"];
-
-            $conn = mysqli_connect("oceanus.cse.buffalo.edu:3306", "khlam", "50338576", "cse442_2023_spring_team_p_db");
             
             $job_id = urldecode($_GET["id"]);
             // $job_serve = $conn->prepare("SELECT $job_id FROM `Jobs`");
-            $query = "SELECT id FROM `Jobs`";
+            $query = "SELECT * FROM `Jobs`";
             $job_serve = mysqli_query($conn, $query);
-            $job_info = mysqli_fetch_array($job_serve, MYSQLI_ASSOC);
-            
+            //console_log($job_info);
+
             $job_title = "";
             $job_professor = "";
             $job_description = "";
 
-            foreach ($job_info as $jobs){
+            // console_log($job_id);
+
+            while ($jobs = mysqli_fetch_assoc($job_serve)) {
+                // console_log($jobs);
                 if ($jobs["id"] == $job_id){
                     $job_title = $jobs["Title"];
                     $job_professor = $jobs["Professor"];
                     $job_description = $jobs["Description"];
+                    break;
                 }
-            }            
+            }
+            // foreach (mysqli_fetch_assoc($job_serve) as $jobs){
+            //     console_log($job_info);
+            //     if ($jobs["id"] == $job_id){
+            //         $job_title = $jobs["Title"];
+            //         $job_professor = $jobs["Professor"];
+            //         $job_description = $jobs["Description"];
+            //     }
+            // }            
 
         
             echo "Title: ";
@@ -68,6 +79,7 @@ require('./backend/head.php');
             <input type="text" style="height:140px; width:300px" name="application_reason">
             <br>
             <br>
+            <input type="hidden" name="getId" value=<?php echo $job_id; ?>>
             <button type="submit" class="base-button green-button">Submit Application</button>
         </form>
     </body>
