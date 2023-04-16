@@ -32,7 +32,7 @@ function listEvents($username)
                     <div class="event-container">
                         <p><b>$class $type</b></p>
                         <p>$day $time</p>
-                    </div
+                    </div>
                 </td>
             </tr>
             EOT;

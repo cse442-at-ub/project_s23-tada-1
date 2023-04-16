@@ -23,12 +23,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $statement = $conn->prepare("DELETE FROM `Events` WHERE `Username`=? AND `Day`=? AND `Time`=? AND `Event Type`=? AND `Class`=? AND `Description`=?");
         $statement->bind_param('ssssss', $username, $event["Day"], $event["Time"], $event["Event Type"], $event["Class"], $event["Description"]);
     } else {
-        header("Location: ./mySchedule.php");
+        echo '<meta http-equiv="refresh" content="0; URL=./mySchedule.php">';
     }
 
     error_log(print_r($event, true));
     $statement->execute();
-    header("Location: ./mySchedule.php");
+    echo '<meta http-equiv="refresh" content="0; URL=./mySchedule.php">';
 }
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     if (isset($_GET) && isset($_SESSION['events'])) {
