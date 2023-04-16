@@ -1,5 +1,6 @@
 <?php
 require('./backend/head.php');
+require('./backend/config.php');
 ?>
 <!DOCTYPE html>
 <html>
@@ -80,7 +81,7 @@ require('./backend/head.php');
             echo "<br>";
             ?>
 
-            <form method="GET" action="./index.php">
+            <form method="GET" action=".<?php $config->root_dir ?>/index.php">
                 Name: <input class="login-info-box" type="text" name="application_name">
                 <br>
                 <br>
