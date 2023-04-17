@@ -2,7 +2,7 @@
 
 function listEvents($username)
 {
-    require('./backend/connection.php');
+    require('backend/connection.php');
     $statement = $conn->prepare("SELECT * FROM Events where Username = (?)");
     if (!$statement) {
         $error = $conn->error;

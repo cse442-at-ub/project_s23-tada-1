@@ -1,11 +1,11 @@
 <?php
-$config = require('./backend/config.php');
-require('./backend/log.php');
+$config = require('backend/config.php');
+require('backend/log.php');
 session_start();
 
-require('./backend/head.php');
-require('./backend/user.php');
-require('./backend/connection.php');
+require('backend/head.php');
+require('backend/user.php');
+require('backend/connection.php');
 
 
 
@@ -110,7 +110,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <head>
 	<?php head('Register Page'); ?>
-	<link rel="stylesheet" type="text/css" href="css/style.css" />
 </head>
 
 <body>

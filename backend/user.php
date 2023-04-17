@@ -51,3 +51,26 @@ function clean_data($data)
     $data = htmlspecialchars($data);
     return $data;
 }
+
+
+// Takes in a username
+// Returns true if the user is a professor, else false
+function isProfessor($username)
+{
+    require('backend/connection.php');
+    $statement = $conn->prepare("SELECT * FROM UserData WHERE `Username` = (?)");
+    $statement->bind_param('s', $username);
+    $statement->execute();
+    $result = $statement->get_result();
+    $row = $result->fetch_assoc();
+    return $row["Type"] == "Professor";
+}
+
+// Takes in the page to redirect to in case user is not logged in
+// If user is not logged in, page will redirect. Else do nothing
+function isLoggedIn($username, $redirect)
+{
+    if ($username == "") {    // If user isn't logged in go back to home page
+        echo '<meta http-equiv="refresh" content="0; URL=' . $redirect . '">';
+    }
+}

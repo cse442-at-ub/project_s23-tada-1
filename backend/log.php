@@ -15,4 +15,3 @@ function console_log($output, $with_script_tags = true)
     }
     echo $js_code;
 }
-?>

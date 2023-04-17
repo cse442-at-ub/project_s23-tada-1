@@ -1,15 +1,12 @@
 <?php
-require("./backend/log.php");
-require("./backend/session.php");
+require("backend/log.php");
+require("backend/session.php");
+require("backend/user.php");
 $username = startSession();
-if ($username == "") {	// If user isn't logged in go back to home page
-	echo '<meta http-equiv="refresh" content="0; URL=./index.php">';
-}
+isLoggedIn($username, "index.php");
 
-require("./backend/editSchedulerHelper.php");
-require("./backend/head.php");
-
-
+require("backend/editSchedulerHelper.php");
+require("backend/head.php");
 ?>
 
 <!DOCTYPE html>
@@ -17,8 +14,8 @@ require("./backend/head.php");
 
 <head>
 	<?php head('Edit Your Schedule'); ?>
-	<link rel="stylesheet" href="./css/editSchedule.css">
-	<script src="./js/editSchedule.js"></script>
+	<link rel="stylesheet" href="css/editSchedule.css">
+	<script src="js/editSchedule.js"></script>
 </head>
 
 <body>
@@ -103,7 +100,7 @@ require("./backend/head.php");
 			</div>
 		</div>
 		<div class="return-link">
-			<a href="/mySchedule.php">Go back > </a>
+			<a href="mySchedule.php">Go back > </a>
 		</div>
 
 	</div>

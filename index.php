@@ -1,11 +1,11 @@
 <?php
-$config = require('./backend/config.php');
-require('./backend/log.php');
-require('./backend/session.php');
+$config = require('backend/config.php');
+require('backend/log.php');
+require('backend/session.php');
 $username = startSession();
 
-require('./backend/connection.php');
-require('./backend/head.php');
+require('backend/connection.php');
+require('backend/head.php');
 
 console_log("Running on " . php_sapi_name());
 ?>

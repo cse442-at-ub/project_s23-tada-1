@@ -51,8 +51,8 @@ function array_sort($array, $on, $order = SORT_ASC)
 
 function listDisplayEvents($username, $selectedClass, $selectedType)
 {
-    require('./backend/connection.php');
-    require('./backend/log.php');
+    require('backend/connection.php');
+    require('backend/log.php');
 
     // list of all the events happening on the specific day
     $Monday = array();

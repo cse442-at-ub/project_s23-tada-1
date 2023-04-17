@@ -1,27 +1,27 @@
-body{
-    text-decoration: none;
-    margin: 0 0 0 0px;   
-    font-family: Arial, Helvetica, sans-serif;
+body {
+	text-decoration: none;
+	margin: 0 0 0 0px;
+	font-family: Arial, Helvetica, sans-serif;
 }
 
-a{
-    text-decoration: none;
+a {
+	text-decoration: none;
 }
 
-li{
-    list-style-type:none;
-    margin-left: 30px;
+li {
+	list-style-type: none;
+	margin-left: 30px;
 }
 
-.logo{
-    padding-top: 12px;
-    color: white;
+.logo {
+	padding-top: 12px;
+	color: white;
 }
 
-.nav{
-    margin: -10px 0px 0px 0px;
-    height: 50px;
-    background-color: black;  
+.nav {
+	margin: -10px 0px 0px 0px;
+	height: 50px;
+	background-color: black;
 }
 
 .page-container {
@@ -34,12 +34,12 @@ li{
 	justify-content: center;
 }
 
-.outlined-box-profile{
-    text-align: left;
-    border: 3px solid;
-    border-radius: 10px;
-    width: 350px;
-    height: 250px;
-    margin: auto;
-    padding: 20px 30px;
+.outlined-box-profile {
+	text-align: left;
+	border: 3px solid;
+	border-radius: 10px;
+	width: 350px;
+	height: 250px;
+	margin: auto;
+	padding: 20px 30px;
 }

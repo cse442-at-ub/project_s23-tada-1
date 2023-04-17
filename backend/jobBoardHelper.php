@@ -2,7 +2,7 @@
 
 function listJobs($username)
 {
-    require('./backend/connection.php');
+    require('backend/connection.php');
 
     $statement = $conn->prepare("SELECT * FROM `Jobs`");
     if (!$statement) {

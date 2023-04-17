@@ -1,11 +1,11 @@
 <?php
-require('./backend/log.php');
+require('backend/log.php');
 
 session_start();
 
-require('./backend/connection.php');
-require('./backend/user.php');
-require('./backend/head.php');
+require('backend/connection.php');
+require('backend/user.php');
+require('backend/head.php');
 
 
 $nameErr = $passwordErr = $generalErr = "";
@@ -41,7 +41,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 				console_log("Verified user: '$name'");
 				$_SESSION["username"] = $name; // Save username as session variable to be accessed on other pages
 				error_log("Setting user variable");
-				echo '<meta http-equiv="refresh" content="0; URL=./index.php">';
+				echo '<meta http-equiv="refresh" content="0; URL=index.php">';
 			} else {
 				$generalErr = "Info is incorect";
 			}
@@ -57,7 +57,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <head>
 	<?php head('Login Page'); ?>
-	<link rel="stylesheet" type="text/css" href="css/style.css" />
 </head>
 
 <body>

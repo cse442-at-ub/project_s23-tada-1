@@ -1,13 +1,12 @@
 <?php
-require('./backend/head.php');
-require('./backend/config.php');
+require('backend/head.php');
+require('backend/config.php');
 ?>
 <!DOCTYPE html>
 <html>
 
 <head>
     <?php head("Job Application") ?>
-    <link rel="stylesheet" type="text/css" href="css/style.css" />
 </head>
 
 <body>
@@ -21,8 +20,8 @@ require('./backend/config.php');
     <div class="page-container">
         <div class="job-application-outlined-box">
             <?php
-            require("./backend/log.php");
-            require('./backend/connection.php');
+            require("backend/log.php");
+            require('backend/connection.php');
 
             if ($_SERVER["REQUEST_METHOD"] === "GET") {
                 if (isset($_GET["id"])) {
@@ -81,7 +80,7 @@ require('./backend/config.php');
             echo "<br>";
             ?>
 
-            <form method="GET" action=".<?php $config->root_dir ?>/index.php">
+            <form method="GET" action="index.php">
                 Name: <input class="login-info-box" type="text" name="application_name">
                 <br>
                 <br>

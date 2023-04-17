@@ -1,15 +1,13 @@
 <?php
 
-require("./backend/log.php");
-require("./backend/session.php");
+require("backend/log.php");
+require("backend/session.php");
+require("backend/user.php");
 $username = startSession();
-if ($username == "") {    // If user isn't logged in go back to home page
-    echo '<meta http-equiv="refresh" content="0; URL=./index.php">';
-}
+isLoggedIn($username, "index.php");
 
-require("./backend/jobBoardHelper.php");
-require("./backend/head.php");
-
+require("backend/jobBoardHelper.php");
+require("backend/head.php");
 ?>
 
 <!DOCTYPE html>
@@ -17,8 +15,8 @@ require("./backend/head.php");
 
 <head>
     <?php head("Job Board"); ?>
-    <script src="./js/jobBoard.js"></script>
-    <link rel="stylesheet" href="./css/jobBoard.css">
+    <script src="js/jobBoard.js"></script>
+    <link rel="stylesheet" href="css/jobBoard.css">
 </head>
 
 <body>

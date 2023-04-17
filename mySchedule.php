@@ -1,20 +1,12 @@
 <?php
-/*
-	Starts a session
-	Starting a session stores a key on the users browser that persists until the browser is closed.
-	Session variables can then be set on the server associated with the users session and can be accessed across all pages, or multiple PHP files.
-	Very convenient system.
-*/
-require('./backend/session.php');
+require('backend/session.php');
+require("backend/user.php");
 $username = startSession();
-if ($username == "") {	// If user isn't logged in go back to home page
-	echo '<meta http-equiv="refresh" content="0; URL=./index.php">';
-}
-#commit message git commit -m "First try at displaying any content for the schedle
-#40" -m 
-require('./backend/connection.php');
-require('./database/eventDisplay.php');
-require('./backend/head.php');
+isLoggedIn($username, "index.php");
+
+require('backend/connection.php');
+require('database/eventDisplay.php');
+require('backend/head.php');
 
 //echo "hello";
 
@@ -42,7 +34,7 @@ $types = $retListDisplay[2];
 	<?php head("My Schedule") ?>
 	<link rel="stylesheet" type="text/css" href="css/mySchedule.css" />
 	<link rel="stylesheet" type="text/css" href="css/tada.css" />
-	<script src="./js/mySchedule.js"></script>
+	<script src="js/mySchedule.js"></script>
 	<style>
 		table,
 		th,
