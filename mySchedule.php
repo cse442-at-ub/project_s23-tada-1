@@ -56,7 +56,7 @@ $types = $retListDisplay[2];
 			<li>
 				<h2 class="logo"> TADA! </h2>
 			</li>
-		</ul>
+		</ul> 
 	</div>
 
 	<div class="page-container">
