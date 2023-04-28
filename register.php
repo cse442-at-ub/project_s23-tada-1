@@ -6,7 +6,7 @@ session_start();
 require('backend/head.php');
 require('backend/user.php');
 require('backend/connection.php');
-
+require('backend/navbar.php');
 
 
 // define variables and set to empty values
@@ -113,13 +113,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </head>
 
 <body>
-	<div class="page-top-view">
-		<ul class="nav justify-content-center">
-			<li>
-				<h2 class="logo"> TADA!</h2>
-			</li>
-		</ul>
-	</div>
+	<?php navbar("") ?>
 	<div class='outlined-box-register'>
 		<h2 class="login-title">Register Here!</h2>
 		<p><span class="error">* required field</span></p>

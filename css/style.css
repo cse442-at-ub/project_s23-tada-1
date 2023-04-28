@@ -7,9 +7,11 @@ a {
 	text-decoration: none;
 }
 
-li {
-	list-style-type: none;
-	margin-left: 30px;
+/* to remove styling on a tag */
+.unstyled {
+	color: inherit;
+	text-decoration: inherit;
+	cursor: pointer;
 }
 
 .logo {
@@ -17,10 +19,21 @@ li {
 	color: white;
 }
 
+.page-top-view {
+	width: 100vw;
+	height: 50px;
+	display: flex;
+	flex-direction: row;
+}
 .nav {
 	margin: -10px 0px 50px 0px;
 	height: 50px;
 	background-color: black;
+}
+
+.nav li {
+	list-style-type: none;
+	margin-left: 30px;
 }
 
 .outlined-box-login {

@@ -8,6 +8,7 @@ isLoggedIn($username, "index.php");
 
 require('backend/connection.php');
 require('backend/head.php');
+require('backend/navbar.php');
 
 ?>
 
@@ -19,13 +20,7 @@ require('backend/head.php');
 </head>
 
 <body>
-	<div class="page-top-view">
-		<ul class="nav justify-content-center">
-			<li>
-				<h2 class="logo"> TADA!</h2>
-			</li>
-		</ul>
-	</div>
+	<?php navbar($username) ?>
 
 	<div class="page-container">
 		<div class="outlined-box-profile">

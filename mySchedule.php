@@ -7,6 +7,7 @@ isLoggedIn($username, "index.php");
 require('backend/connection.php');
 require('database/eventDisplay.php');
 require('backend/head.php');
+require('backend/navbar.php');
 
 //echo "hello";
 
@@ -51,13 +52,7 @@ $types = $retListDisplay[2];
 </head>
 
 <body <?php echo "onload='selector(\"$selectedClass\", \"$selectedType\")'" ?>>
-	<div class="page-top-view">
-		<ul class="nav justify-content-center">
-			<li>
-				<h2 class="logo"> TADA! </h2>
-			</li>
-		</ul> 
-	</div>
+	<?php navbar($username) ?>
 
 	<div class="page-container">
 		<div class="schedule-table-top-view">

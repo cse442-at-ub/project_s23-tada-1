@@ -1,6 +1,13 @@
 <?php
+require('backend/log.php');
+require('backend/session.php');
+
+$username = startSession();
+isLoggedIn($username, 'index.php');
+
+require('backend/user.php');
 require('backend/head.php');
-require('backend/config.php');
+require('backend/navbar.php');
 ?>
 <!DOCTYPE html>
 <html>
@@ -10,13 +17,7 @@ require('backend/config.php');
 </head>
 
 <body>
-    <div class="page-top-view">
-        <ul class="nav justify-content-center">
-            <li>
-                <h2 class="logo"> TADA! </h2>
-            </li>
-        </ul>
-    </div>
+    <?php navbar($username) ?>
     <div class="page-container">
         <div class="job-application-outlined-box">
             <?php

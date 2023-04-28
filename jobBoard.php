@@ -8,6 +8,7 @@ isLoggedIn($username, "index.php");
 
 require("backend/jobBoardHelper.php");
 require("backend/head.php");
+require('backend/navbar.php');
 ?>
 
 <!DOCTYPE html>
@@ -20,6 +21,7 @@ require("backend/head.php");
 </head>
 
 <body>
+    <?php navbar($username) ?>
     <div class="page-container">
         <h1>Job Board</h1>
         <div id="job-board-container">

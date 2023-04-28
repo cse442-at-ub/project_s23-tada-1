@@ -6,7 +6,7 @@ session_start();
 require('backend/connection.php');
 require('backend/user.php');
 require('backend/head.php');
-
+require('backend/navbar.php');
 
 $nameErr = $passwordErr = $generalErr = "";
 $name = $password = "";
@@ -61,14 +61,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <body>
 	<!-- Navigation -->
-	<div class="page-top-view">
-		<ul class="nav justify-content-center">
-			<li>
-				<h2 class="logo">TADA!</h2>
-			<li>
-		</ul>
-	</div>
-
+	<?php navbar("") ?>
 
 	<div class='outlined-box-login'>
 		<h2 class="login-title"> Login </h2>
