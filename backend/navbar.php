@@ -37,13 +37,10 @@ function navbar($username)
 						<a href="mySchedule.php">My Schedule</a>
 					</li>
 					<li> 
-						<a href="jobBoard.php">Job Board</a>
-					</li>
-					<li> 
 						<a href="editSchedule.php">Edit Schedule</a>
 					</li>
 					<li> 
-						<a href="jobCreator.php">Job Creator</a>
+					<a href="jobBoard.php">Job Board</a>
 					</li>
 					$userButtons
 				</ul>
