@@ -5,14 +5,14 @@
     insert_user
     Inserts a user into the database
 */
-function insert_user($name, $username, $email, $password, $aboutMe, $exp1, $exp2)
+function insert_user($name, $username, $email, $password, $aboutMe, $exp1, $exp2, $prof)
 {
     require('connection.php');
     // Hash password
     $hashed_password = password_hash($password, PASSWORD_BCRYPT);
     // Inserts it into the database. If it couldn't for some reason, it'll print out an error message
-    $statement = $conn->prepare("INSERT INTO UserData (Name, Username, Email, Password, AboutMe, Experience1, Experience2) VALUES (?, ?, ?, ?, ?, ?, ?)");
-    $statement->bind_param('sssssss', $name, $username, $email, $hashed_password, $aboutMe, $exp1, $exp2);
+    $statement = $conn->prepare("INSERT INTO UserData (Name, Username, Email, Password, AboutMe, Experience1, Experience2, Type) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+    $statement->bind_param('ssssssss', $name, $username, $email, $hashed_password, $aboutMe, $exp1, $exp2, $prof);
     $statement->execute();
     if (mysqli_error($conn)) {
         console_log("Error: " . mysqli_error($conn));
@@ -52,22 +52,24 @@ function clean_data($data)
     return $data;
 }
 
-
-// Takes in a username
-// Returns true if the user is a professor, else false
-function isProfessor($username)
+/*
+    Takes in a username
+    Returns true if the user is a professor, else false
+*/
+function isProfessor()
 {
-    require('backend/connection.php');
-    $statement = $conn->prepare("SELECT * FROM UserData WHERE `Username` = (?)");
-    $statement->bind_param('s', $username);
-    $statement->execute();
-    $result = $statement->get_result();
-    $row = $result->fetch_assoc();
-    return $row["Type"] == "Professor";
+    error_log(print_r($_SESSION, true));
+    if (isset($_SESSION["type"]) && $_SESSION["type"] == "Professor") {
+        return true;
+    }
+
+    return false;
 }
 
-// Takes in the page to redirect to in case user is not logged in
-// If user is not logged in, page will redirect. Else do nothing
+/*
+    Takes in the page to redirect to in case user is not logged in
+    If user is not logged in, page will redirect. Else do nothing
+*/
 function isLoggedIn($username, $redirect)
 {
     if ($username == "") {    // If user isn't logged in go back to home page

@@ -40,6 +40,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 			if (password_verify($password, $row["Password"])) {
 				console_log("Verified user: '$name'");
 				$_SESSION["username"] = $name; // Save username as session variable to be accessed on other pages
+				$_SESSION["type"] = $row["Type"];
 				error_log("Setting user variable");
 				echo '<meta http-equiv="refresh" content="0; URL=index.php">';
 			} else {
