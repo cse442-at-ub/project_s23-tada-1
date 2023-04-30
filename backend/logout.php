@@ -1,5 +1,4 @@
 <?php
-
 // make seperate file to log out (make the username no longer "exist" and then redirect to index.php
 // code taken from https://stackoverflow.com/questions/3512507/proper-way-to-logout-from-a-session-in-php 
 session_start();
@@ -20,6 +19,4 @@ if (ini_get("session.use_cookies")) {
 // Finally, destroy the session.
 session_destroy();
 
-header("Location: $config->root_dir/index.php");
-
-?>
+header("Location: ../index.php");

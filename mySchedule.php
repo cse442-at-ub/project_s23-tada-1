@@ -308,7 +308,7 @@ $types = $retListDisplay[2];
 			<form method="GET" action="profile.php">
 				<div class="schedule-table-bottom-elements"> <button class="base-button green-button" type="submit">Profile Page</button> </div>
 			</form>
-			<form metho="GET" action="jobBoard.php">
+			<form method="GET" action="jobBoard.php">
 				<div class="schedule-table-bottom-elements"> <button class="base-button green-button" type="submit">Job Board</button> </div>
 			</form>
 		</div>

@@ -6,44 +6,40 @@ require("backend/user.php");
 $username = startSession();
 isLoggedIn($username, "index.php");
 
-require("backend/jobBoardHelper.php");
+require("backend/applicationListHelper.php");
 require("backend/head.php");
-require('backend/navbar.php');
 ?>
 
 <!DOCTYPE html>
 <html>
 
 <head>
-    <?php head("Job Board"); ?>
-    <script src="js/jobBoard.js"></script>
+    <?php head("Applications Received"); ?>
     <link rel="stylesheet" href="css/jobBoard.css">
 </head>
 
 <body>
-    <?php navbar($username) ?>
     <div class="page-container">
-        <h1>Job Board</h1>
+        <h1>Applications Received</h1>
         <div id="job-board-container">
             <table id="job-table">
                 <tr>
                     <th id="title">
                         Title
                     </th>
-                    <th id="employer">
-                        Employer
+                    <th id="applicant">
+                        Applicant
                     </th>
-                    <th id="description">
-                        Description
+                    <th id="experiences">
+                        Experiences
                     </th>
-                    <th id="button">
-
+                    <th id="reason">
+                        Reason
                     </th>
                 </tr>
-                <?php listJobs($username); ?>
+                <?php listApplications($username); ?>
             </table>
         </div>
-        <?php showButtons(); ?>
     </div>
 
 </body>

@@ -2,6 +2,22 @@
 
 function navbar($username)
 {
+	if ($username == "") {
+		$userButtons = <<<"EOT"
+						<li>
+							<a href="login.php">Login</a>
+						</li>
+						<li>
+							<a href="register.php">Register</a>
+						</li>
+						EOT;
+	} else {
+		$userButtons = <<<"EOT"
+						<li>
+							<a href="backend/logout.php">Log out</a>
+						</li>
+						EOT;
+	}
 
 	$html = <<<"EOT"
 		<div class="page-top-view">
@@ -29,10 +45,7 @@ function navbar($username)
 					<li> 
 						<a href="jobCreator.php">Job Creator</a>
 					</li>
-					<li>
-						<a href="/backend/logout.php">Logout</a> 
-					</li>
-
+					$userButtons
 				</ul>
 			</div>
 		</div>

@@ -39,6 +39,7 @@ require('backend/navbar.php');
 			$valueAboutMe = $row['AboutMe'];
 			$valueExp1 = $row['Experience1'];
 			$valueExp2 = $row['Experience2'];
+			$valueType = $row['Type'];
 			$html = <<<"EOT"
 					<p>Username: $valueUser</p>
 					<p>Email: $valueEmail</p>
@@ -46,6 +47,7 @@ require('backend/navbar.php');
 					<p>About Me: $valueAboutMe</p>
 					<p>Experience 1: $valueExp1</p>
 					<p>Experience 2: $valueExp2</p>
+					<p>User Type: $valueType</p>
 					EOT;
 			echo $html;
 			?>
