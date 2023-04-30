@@ -24,7 +24,7 @@ function navbar($username)
 			<div class="title-container">
 				<ul class="nav">
 					<li>
-						<h2 class="logo"><a class="unstyled" href="index.php">TADA!</a></h2>
+						<h1 class="logo"><a class="unstyled" href="index.php">TADA!</a></h1>
 					</li>
 				</ul>
 			</div>
