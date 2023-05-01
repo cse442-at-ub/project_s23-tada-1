@@ -9,6 +9,7 @@ if (!isProfessor()) {                                      // If user type isn't
 }
 
 require('backend/head.php');
+require('backend/navbar.php');
 ?>
 
 <!DOCTYPE html>
