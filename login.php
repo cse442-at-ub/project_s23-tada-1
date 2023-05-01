@@ -1,7 +1,10 @@
 <?php
 require('backend/log.php');
-
-session_start();
+require('backend/session.php');
+$username = startSession();
+if ($username != "") {
+	echo '<meta http-equiv="refresh" content="0; URL=index.php">';
+}
 
 require('backend/connection.php');
 require('backend/user.php');
