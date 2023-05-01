@@ -55,7 +55,7 @@ function showButtons()
                 <form method="GET" action="jobCreator.php">
                     <button class="base-button green-button" type="submit">Post New Job</button>
                 </form>
-                <form method="GET" action="applicationList.php">
+                <form method="GET" action="ApplicationList.php">
                     <button class="base-button green-button" type="submit">View Received Applications</button>
                 </form>
             </div>
