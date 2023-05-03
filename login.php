@@ -1,12 +1,15 @@
 <?php
 require('backend/log.php');
-
-session_start();
+require('backend/session.php');
+$username = startSession();
+if ($username != "") {
+	echo '<meta http-equiv="refresh" content="0; URL=index.php">';
+}
 
 require('backend/connection.php');
 require('backend/user.php');
 require('backend/head.php');
-
+require('backend/navbar.php');
 
 $nameErr = $passwordErr = $generalErr = "";
 $name = $password = "";
@@ -40,6 +43,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 			if (password_verify($password, $row["Password"])) {
 				console_log("Verified user: '$name'");
 				$_SESSION["username"] = $name; // Save username as session variable to be accessed on other pages
+				$_SESSION["type"] = $row["Type"];
 				error_log("Setting user variable");
 				echo '<meta http-equiv="refresh" content="0; URL=index.php">';
 			} else {
@@ -61,14 +65,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <body>
 	<!-- Navigation -->
-	<div class="page-top-view">
-		<ul class="nav justify-content-center">
-			<li>
-				<h2 class="logo">TADA!</h2>
-			<li>
-		</ul>
-	</div>
-
+	<?php navbar("") ?>
 
 	<div class='outlined-box-login'>
 		<h2 class="login-title"> Login </h2>

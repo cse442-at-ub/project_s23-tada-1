@@ -6,12 +6,12 @@ session_start();
 require('backend/head.php');
 require('backend/user.php');
 require('backend/connection.php');
-
+require('backend/navbar.php');
 
 
 // define variables and set to empty values
 $nameErr = $emailErr = $passwordErr = $usernameErr = "";
-$name = $email = $password = $aboutMe = $username = $exp1 = $exp2 = "";
+$name = $email = $password = $aboutMe = $username = $exp1 = $exp2 = $prof = "";
 
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -93,16 +93,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		$exp2 = test_input($_POST["exp2"]);
 	}
 
+	if (empty($_POST["type"])) {
+		$prof = "";
+	} else {
+		$prof = test_input($_POST["type"]);
+	}
+
 	if ($usernameErr == "" && $emailErr == "" && $passwordErr == "") {
 		// Makes the password
 		// Check password for correct length and characters
-		if (insert_user($name, $username, $email, $password, $aboutMe, $exp1, $exp2)) {
+		if (insert_user($name, $username, $email, $password, $aboutMe, $exp1, $exp2, $prof)) {
 			header("Location: $config->root_dir/index.php");
 		}
 	}
 }
-
-
 ?>
 
 <!DOCTYPE HTML>
@@ -113,13 +117,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </head>
 
 <body>
-	<div class="page-top-view">
-		<ul class="nav justify-content-center">
-			<li>
-				<h2 class="logo"> TADA!</h2>
-			</li>
-		</ul>
-	</div>
+	<?php navbar("") ?>
 	<div class='outlined-box-register'>
 		<h2 class="login-title">Register Here!</h2>
 		<p><span class="error">* required field</span></p>
@@ -139,6 +137,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 			Password <br>
 			<input class="login-info-box" type="password" name="password" value="<?php echo $password; ?>">
 			<span class="error">* <?php echo $passwordErr; ?></span>
+			<br><br>
+			Are you a TA or Professor? <br>
+			<input type="radio" id="TA" name="type" value="TA">
+			<label for="TA">TA</label><br>
+			<input type="radio" id="Professor" name="type" value="Professor">
+			<label for="Professor">Professor</label><br>
 			<br><br>
 			About Me
 			<textarea class="login-info-box" name="aboutMe" rows="5" cols="40"><?php echo $aboutMe; ?></textarea>

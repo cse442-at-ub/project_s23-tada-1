@@ -45,3 +45,21 @@ function listJobs($username)
     }
     console_log(json_encode($jobs));
 }
+
+
+function showButtons()
+{
+    if (isProfessor()) {
+        $html = <<<'EOT'
+            <div class="job-button-container">
+                <form method="GET" action="jobCreator.php">
+                    <button class="base-button green-button" type="submit">Post New Job</button>
+                </form>
+                <form method="GET" action="ApplicationList.php">
+                    <button class="base-button green-button" type="submit">View Received Applications</button>
+                </form>
+            </div>
+            EOT;
+        echo $html;
+    }
+}

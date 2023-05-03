@@ -21,6 +21,9 @@ body {
 	color: white;
 }
 
+#job-board-container {
+	padding: 50px 0;
+}
 #job-table {
 	width: 70vw;
 	margin: auto;
@@ -50,4 +53,11 @@ th {
 }
 #button {
 	width: 10vw;
+}
+
+.job-button-container {
+	width: 40vw;
+	margin: auto;
+	display: flex;
+	justify-content: space-around;
 }

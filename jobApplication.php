@@ -1,6 +1,13 @@
 <?php
+require('backend/log.php');
+require('backend/session.php');
+require('backend/user.php');
+$username = startSession();
+isLoggedIn($username, 'index.php');
+
+require('backend/connection.php');
 require('backend/head.php');
-require('backend/config.php');
+require('backend/navbar.php');
 ?>
 <!DOCTYPE html>
 <html>
@@ -10,31 +17,10 @@ require('backend/config.php');
 </head>
 
 <body>
-    <div class="page-top-view">
-        <ul class="nav justify-content-center">
-            <li>
-                <h2 class="logo"> TADA! </h2>
-            </li>
-        </ul>
-    </div>
+    <?php navbar($username) ?>
     <div class="page-container">
         <div class="job-application-outlined-box">
             <?php
-            require("backend/log.php");
-            require('backend/connection.php');
-
-            if ($_SERVER["REQUEST_METHOD"] === "GET") {
-                if (isset($_GET["id"])) {
-                    console_log($_GET["id"]);
-                    //console_log("hello");
-                    // echo $_GET["id"];
-                    // echo urldecode($_GET["id"]);
-                    // echo $_GET["table"];
-                }
-            }
-            // echo "Job Application Details: ";
-            // echo $_GET["id"];
-
             $job_id = urldecode($_GET["id"]);
             // $job_serve = $conn->prepare("SELECT $job_id FROM `Jobs`");
             $query = "SELECT * FROM `Jobs`";

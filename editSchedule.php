@@ -7,6 +7,7 @@ isLoggedIn($username, "index.php");
 
 require("backend/editSchedulerHelper.php");
 require("backend/head.php");
+require('backend/navbar.php');
 ?>
 
 <!DOCTYPE html>
@@ -19,6 +20,7 @@ require("backend/head.php");
 </head>
 
 <body>
+	<?php navbar($username) ?>
 	<div class="edit-container">
 		<h1>Edit Schedule</h1>
 

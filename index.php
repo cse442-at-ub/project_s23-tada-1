@@ -6,6 +6,7 @@ $username = startSession();
 
 require('backend/connection.php');
 require('backend/head.php');
+require('backend/navbar.php');
 
 console_log("Running on " . php_sapi_name());
 ?>
@@ -18,6 +19,7 @@ console_log("Running on " . php_sapi_name());
 </head>
 
 <body>
+	<?php navbar($username) ?>
 	<h1>TA Developers Asc., Ind Inc LLC</h1>
 	<p>Hello World!</p>
 	<form method="GET" action="register.php">

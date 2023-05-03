@@ -8,6 +8,7 @@ isLoggedIn($username, "index.php");
 
 require('backend/connection.php');
 require('backend/head.php');
+require('backend/navbar.php');
 
 ?>
 
@@ -19,13 +20,7 @@ require('backend/head.php');
 </head>
 
 <body>
-	<div class="page-top-view">
-		<ul class="nav justify-content-center">
-			<li>
-				<h2 class="logo"> TADA!</h2>
-			</li>
-		</ul>
-	</div>
+	<?php navbar($username) ?>
 
 	<div class="page-container">
 		<div class="outlined-box-profile">
@@ -44,6 +39,7 @@ require('backend/head.php');
 			$valueAboutMe = $row['AboutMe'];
 			$valueExp1 = $row['Experience1'];
 			$valueExp2 = $row['Experience2'];
+			$valueType = $row['Type'];
 			$html = <<<"EOT"
 					<p>Username: $valueUser</p>
 					<p>Email: $valueEmail</p>
@@ -51,6 +47,7 @@ require('backend/head.php');
 					<p>About Me: $valueAboutMe</p>
 					<p>Experience 1: $valueExp1</p>
 					<p>Experience 2: $valueExp2</p>
+					<p>User Type: $valueType</p>
 					EOT;
 			echo $html;
 			?>
