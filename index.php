@@ -68,14 +68,14 @@ console_log("Running on " . php_sapi_name());
 		// console_log(gettype($app_id));
 
 		//   Testing
-		echo "Name: ";
-		echo $app_name;
-		echo "<br>";
-		echo "Experience: ";
-		echo $app_experience; 
-		echo "<br>";
-		echo "Why you want this job: ";
-		echo $app_reason; 
+		// echo "Name: ";
+		// echo $app_name;
+		// echo "<br>";
+		// echo "Experience: ";
+		// echo $app_experience; 
+		// echo "<br>";
+		// echo "Why you want this job: ";
+		// echo $app_reason; 
 
 		// $query = "INSERT INTO JobApp (id, Name, Experience, Reason) VALUES (?, ?, ?, ?)";
 		$statement = $conn->prepare("INSERT INTO JobApp (id, Name, Experience, Reason) VALUES (?, ?, ?, ?)");
