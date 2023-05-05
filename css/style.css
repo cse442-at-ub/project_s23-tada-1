@@ -76,12 +76,12 @@ a {
 }
 
 .page-header {
-	float: left;
-	margin: 150px 150px 150px 150px;
+	margin: 150px;
 	border: 5px solid;
 	border-radius: 15px;
 	width: 350px;
 	padding: 30px 30px;
+	box-sizing: border-box;
 }
 
 .outlined-box {
@@ -187,6 +187,12 @@ a {
 		flex-wrap: wrap;
 		justify-content: center;
 		margin: 0;
+	}
+}
+
+@media screen and (max-width: 800px) {
+	.page-header {
+		margin: auto;
 	}
 }
 
