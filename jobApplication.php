@@ -1,11 +1,11 @@
 <?php
 require('backend/log.php');
 require('backend/session.php');
-
+require('backend/user.php');
 $username = startSession();
 isLoggedIn($username, 'index.php');
 
-require('backend/user.php');
+require('backend/connection.php');
 require('backend/head.php');
 require('backend/navbar.php');
 ?>
@@ -21,21 +21,6 @@ require('backend/navbar.php');
     <div class="page-container">
         <div class="outlined-box">
             <?php
-            require("backend/log.php");
-            require('backend/connection.php');
-
-            if ($_SERVER["REQUEST_METHOD"] === "GET") {
-                if (isset($_GET["id"])) {
-                    console_log($_GET["id"]);
-                    //console_log("hello");
-                    // echo $_GET["id"];
-                    // echo urldecode($_GET["id"]);
-                    // echo $_GET["table"];
-                }
-            }
-            // echo "Job Application Details: ";
-            // echo $_GET["id"];
-
             $job_id = urldecode($_GET["id"]);
             // $job_serve = $conn->prepare("SELECT $job_id FROM `Jobs`");
             $query = "SELECT * FROM `Jobs`";

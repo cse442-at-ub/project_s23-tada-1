@@ -58,22 +58,24 @@ console_log("Running on " . php_sapi_name());
 	<?php
 	if (!empty($_GET["application_name"]) and !empty($_GET["application_experience"]) and !empty($_GET["application_reason"])) {
 		echo "<h2>Congratulations Application Submitted</h2>";
-		// 	echo "Name: ";
-		// 	echo $_GET["application_name"];
-		// 	echo "<br>";
-		// 	echo "Experience: ";
-		// 	echo $_GET["application_experience"]; 
-		// 	echo "<br>";
-		// 	echo "Why you want this job: ";
-		// 	echo $_GET["application_reason"]; 
 
 
-		$app_name = $_GET["application_name"];
-		$app_experience = $_GET["application_experience"];
-		$app_reason = $_GET["application_reason"];
+		$app_name = htmlspecialchars($_GET["application_name"]);
+		$app_experience = htmlspecialchars($_GET["application_experience"]);
+		$app_reason = htmlspecialchars($_GET["application_reason"]);
 		$app_id = $_GET["getId"];
 		settype($app_id, "integer");
 		// console_log(gettype($app_id));
+
+		//   Testing
+		// echo "Name: ";
+		// echo $app_name;
+		// echo "<br>";
+		// echo "Experience: ";
+		// echo $app_experience; 
+		// echo "<br>";
+		// echo "Why you want this job: ";
+		// echo $app_reason; 
 
 		// $query = "INSERT INTO JobApp (id, Name, Experience, Reason) VALUES (?, ?, ?, ?)";
 		$statement = $conn->prepare("INSERT INTO JobApp (id, Name, Experience, Reason) VALUES (?, ?, ?, ?)");
