@@ -23,7 +23,7 @@ require('backend/navbar.php');
 	<?php navbar($username) ?>
 
 	<div class="page-container">
-		<div class="outlined-box-profile">
+		<div class="outlined-box">
 			<h1> My Profile </h1>
 			<?php
 			$query = "SELECT * FROM UserData WHERE `Username` = (?)";

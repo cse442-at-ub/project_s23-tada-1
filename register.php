@@ -118,7 +118,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <body>
 	<?php navbar("") ?>
-	<div class='outlined-box-register'>
+	<div class='outlined-box'>
 		<h2 class="login-title">Register Here!</h2>
 		<p><span class="error">* required field</span></p>
 		<form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">

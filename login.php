@@ -58,13 +58,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <head>
 	<?php head('Login Page'); ?>
+	<link rel="stylesheet" href="css/login.css">
 </head>
 
 <body>
 	<!-- Navigation -->
 	<?php navbar("") ?>
 
-	<div class='outlined-box-login'>
+	<div class='outlined-box'>
 		<h2 class="login-title"> Login </h2>
 		<form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
 			Username <br>

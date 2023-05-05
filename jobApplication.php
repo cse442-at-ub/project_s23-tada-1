@@ -19,7 +19,7 @@ require('backend/navbar.php');
 <body>
     <?php navbar($username) ?>
     <div class="page-container">
-        <div class="job-application-outlined-box">
+        <div class="outlined-box">
             <?php
             require("backend/log.php");
             require('backend/connection.php');
