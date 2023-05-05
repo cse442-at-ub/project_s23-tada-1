@@ -20,25 +20,27 @@ console_log("Running on " . php_sapi_name());
 
 <body>
 	<?php navbar($username) ?>
-	<h1>TA Developers Asc., Ind Inc LLC</h1>
-	<p>Hello World!</p>
-	<form method="GET" action="register.php">
-		<button type="submit">Register</button>
-	</form>
-	<form method="GET" action="login.php">
-		<button type="submit">Login</button>
-	</form>
-	<div class="welcome-message">
-		<?php
-		// If user has logged in during the session, display welcome message
-		if ($username != "") {
-			echo "Hello, $username";
-		}
-		?>
-		<br><br>
+	<div class="page-header">
+		<h1>Teaching Assistant Developers Association</h1>
+		<div class="button-container">
+			<form method="GET" action="register.php">
+				<button type="submit" class="base-button green-button">Register</button>
+			</form>
+			<form method="GET" action="login.php">
+				<button type="submit" class="base-button green-button">Login</button>
+			</form>
+		</div>
+		<div class="welcome-message">
+			<?php
+			// If user has logged in during the session, display welcome message
+			if ($username != "") {
+				echo "Hello, $username";
+			}
+			?>
+		</div>
 	</div>
 
-	<?php
+	<!-- <?php
 	// Retrieving usernames
 	$result = mysqli_query($conn, "SELECT Username FROM UserData");
 	// mysqli_close($conn);
@@ -53,7 +55,7 @@ console_log("Running on " . php_sapi_name());
 		echo "</tr>";
 	}
 	echo "</table>";
-	?>
+	?> -->
 
 	<?php
 	if (!empty($_GET["application_name"]) and !empty($_GET["application_experience"]) and !empty($_GET["application_reason"])) {
@@ -87,11 +89,6 @@ console_log("Running on " . php_sapi_name());
 		mysqli_close($conn);
 	}
 	?>
-
-	<!-- // This is where the schedule and options are -->
-	<form method="GET" action="mySchedule.php">
-		<button type="submit">My Schedule</button>
-	</form>
 	<br>
 </body>
 

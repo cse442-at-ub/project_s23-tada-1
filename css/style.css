@@ -3,6 +3,7 @@ body {
 	margin: 0;
 	font-family: Arial, Helvetica, sans-serif;
 	vertical-align: center;
+	background-image: url('/assets/TADA-Background.png');
 }
 
 a {
@@ -67,10 +68,19 @@ a {
 	justify-content: center;
 }
 
+.page-header {
+	float: left;
+	margin: 150px 150px 150px 150px;
+	border: 5px solid;
+	border-radius: 15px;
+	width: 350px;
+	padding: 30px 30px;
+}
+
 .outlined-box {
 	text-align: left;
-	border: 3px solid;
-	border-radius: 10px;
+	border: 5px solid;
+	border-radius: 15px;
 	width: 350px;
 	margin: auto;
 	padding: 30px 30px;
@@ -91,6 +101,12 @@ a {
 }
 
 /* Button classes */
+.button-container {
+	width: 150px;
+	display: flex;
+	justify-content: space-between;
+}
+
 .base-button {
 	border: 0px;
 	border-radius: 6px;
