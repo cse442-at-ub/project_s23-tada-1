@@ -17,21 +17,21 @@ require('backend/navbar.php');
 
 <head>
 	<?php head("Create Job"); ?>
+	<link rel="stylesheet" type="text/css" href="css/jobCreator.css" />
 </head>
 
 <body>
 	<?php navbar($username) ?>
-	<div id="create-app-container">
-		<h2>Create Job</h2>
+	<div class="outlined-box" id="create-app-container">
+		<h2 class="title">Create Job</h2>
 		<form method="POST" action="database/createJob.php">
 			<label for="Title">Title: </label>
-			<input type="text" name="Title">
+			<input class="info-box" type="text" name="Title">
 			<label for="Description">Description: </label>
-			<input type="text" name="Description" maxlength="150">
+			<input class="info-box" type="text" name="Description" maxlength="150">
 			<button type="submit" class="base-button green-button">Post Job</button>
 		</form>
 	</div>
-
 </body>
 
 </html>

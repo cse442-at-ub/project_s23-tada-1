@@ -8,6 +8,7 @@
 
 	border: 2px solid black;
 	border-radius: 6px;
+	background-color: #fff6e4e6;
 }
 
 .edit-container h1 {
@@ -25,11 +26,17 @@
 	max-width: 300px;
 }
 
-.edit-class-table {
+.edit-class-list {
+	max-height: 500px;
 	width: 250px;
+	overflow-y: scroll;
 	border: 2px solid black;
 	border-radius: 6px;
 	border-spacing: 0px;
+}
+
+.edit-class-table {
+	width: 250px;
 }
 .edit-class-table th {
 	background-color: black;
@@ -51,17 +58,12 @@
 .create-form-button-container {
 	display: flex;
 	justify-content: right;
+	padding-bottom: 1em;
 }
 .edit-form-button-container {
 	display: flex;
 	justify-content: space-between;
-}
-
-.return-link {
-	width: 100px;
-	margin: auto;
-	padding-bottom: 10px;
-	text-align: center;
+	padding-top: 1em;
 }
 
 #create-event-container form,
@@ -69,4 +71,26 @@
 	display: flex;
 	flex-direction: column;
 	justify-content: left;
+}
+
+@media screen and (max-width: 800px) {
+	.edit-container {
+		padding: 10px;
+		margin: auto;
+		border: none;
+		box-sizing: border-box;
+	}
+
+	.edit-container-inner {
+		flex-direction: column;
+		align-items: center;
+	}
+
+	.edit-container-inner > * {
+		padding-bottom: 20px;
+	}
+
+	#event-form-container {
+		padding: 20px 0;
+	}
 }

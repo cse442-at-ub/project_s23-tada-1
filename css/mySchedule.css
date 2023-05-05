@@ -1,5 +1,7 @@
 .schedule-table-top-buttons {
+	width: auto;
 	display: flex;
+	justify-content: space-between;
 }
 
 .schedule-table-top-elements {
@@ -8,9 +10,24 @@
 
 .schedule-table-bottom-view {
 	display: flex;
+	margin: auto;
 }
 
 .schedule-table-bottom-elements {
 	padding-top: 10px;
 	padding-right: 40px;
+}
+
+.small-hide {
+	display: none;
+}
+@media screen and (max-width: 500px) {
+	.small-hide {
+		display: inherit;
+	}
+
+	.schedule {
+		width: 450px;
+		overflow-x: scroll;
+	}
 }

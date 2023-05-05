@@ -119,23 +119,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <body>
 	<?php navbar("") ?>
 	<div class='outlined-box'>
-		<h2 class="login-title">Register Here!</h2>
+		<h2 class="title">Register Here!</h2>
 		<p><span class="error">* required field</span></p>
 		<form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
 			Name <br>
-			<input class="login-info-box" type="text" name="name" value="<?php echo $name; ?>">
+			<input class="info-box" type="text" name="name" value="<?php echo $name; ?>">
 			<span class="error">* <?php echo $nameErr; ?></span>
 			<br><br>
 			Username <br>
-			<input class="login-info-box" type="text" name="username" value="<?php echo $username; ?>">
+			<input class="info-box" type="text" name="username" value="<?php echo $username; ?>">
 			<span class="error">* <?php echo $usernameErr; ?></span>
 			<br><br>
 			Email <br>
-			<input class="login-info-box" type="text" name="email" value="<?php echo $email; ?>">
+			<input class="info-box" type="text" name="email" value="<?php echo $email; ?>">
 			<span class="error">* <?php echo $emailErr; ?></span>
 			<br><br>
 			Password <br>
-			<input class="login-info-box" type="password" name="password" value="<?php echo $password; ?>">
+			<input class="info-box" type="password" name="password" value="<?php echo $password; ?>">
 			<span class="error">* <?php echo $passwordErr; ?></span>
 			<br><br>
 			Are you a TA or Professor? <br>
@@ -145,11 +145,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 			<label for="Professor">Professor</label><br>
 			<br><br>
 			About Me
-			<textarea class="login-info-box" name="aboutMe" rows="5" cols="40"><?php echo $aboutMe; ?></textarea>
+			<textarea class="info-box" name="aboutMe" rows="5" cols="40"><?php echo $aboutMe; ?></textarea>
 			<br><br>
-			Experience 1: <textarea class="login-info-box" name="exp1" rows="5" cols="40"><?php echo $exp1; ?></textarea>
+			Experience 1: <textarea class="info-box" name="exp1" rows="5" cols="40"><?php echo $exp1; ?></textarea>
 			<br><br>
-			Experience 2: <textarea class="login-info-box" name="exp2" rows="5" cols="40"><?php echo $exp2; ?></textarea>
+			Experience 2: <textarea class="info-box" name="exp2" rows="5" cols="40"><?php echo $exp2; ?></textarea>
 			<br><br>
 			<input class="base-button green-button" type="submit" name="register" value="Register">
 			<br><br>

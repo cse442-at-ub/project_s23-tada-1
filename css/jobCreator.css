@@ -1,0 +1,12 @@
+#create-app-container form {
+	display: flex;
+	flex-direction: column;
+}
+
+#create-app-container form > * {
+	margin-bottom: 20px;
+}
+
+#create-app-container .title {
+	margin-bottom: 20px;
+}

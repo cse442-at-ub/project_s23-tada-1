@@ -69,14 +69,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	<?php navbar("") ?>
 
 	<div class='outlined-box'>
-		<h2 class="login-title"> Login </h2>
+		<h2 class="title"> Login </h2>
 		<form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
 			Username <br>
-			<input class="login-info-box" type="text" name="username" value="<?php echo $name; ?>">
+			<input class="info-box" type="text" name="username" value="<?php echo $name; ?>">
 			<span class="error">* <?php echo $nameErr; ?></span>
 			<br><br>
 			Password <br>
-			<input class="login-info-box" type="password" name="password" value="<?php echo $password; ?>">
+			<input class="info-box" type="password" name="password" value="<?php echo $password; ?>">
 			<span class="error">* <?php echo $passwordErr; ?></span>
 			<br><br>
 			<span class="error"><?php echo $generalErr; ?></span>

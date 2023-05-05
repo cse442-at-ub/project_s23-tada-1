@@ -6,7 +6,10 @@ body {
 
 #job-board-container {
 	padding: 50px 0;
+	max-height: 600px;
+	overflow-y: scroll;
 }
+
 #job-table {
 	width: 70vw;
 	margin: auto;
@@ -40,6 +43,7 @@ th {
 
 .job-button-container {
 	width: 40vw;
+	min-width: 300px;
 	margin: auto;
 	display: flex;
 	justify-content: space-around;

@@ -56,7 +56,7 @@ $types = $retListDisplay[2];
 
 	<div class="page-container">
 		<div class="schedule-table-top-view">
-			<div class="schedule-table-top-elements">
+			<div class="title">
 				<h2> My Schedule </h2>
 			</div>
 		</div>
@@ -66,6 +66,7 @@ $types = $retListDisplay[2];
 			</form>
 			<div class="schedule-table-top-elements"> <?php showFilters($classes, $types, $selectedClass, $selectedType); ?> </div>
 		</div>
+		<p class="small-hide"> Scroll to view entire schedule!</p>
 		<?php
 		#bertha
 		$fillInList = array(
@@ -179,7 +180,7 @@ $types = $retListDisplay[2];
 
 		echo "<br>";
 
-		echo "<table border='1'>";
+		echo "<table border='1' class=\"schedule\">";
 		echo "<tr>";
 		echo "<th>" . " " . "</th>";
 		echo "<th>" . "Monday" . "</th>";
