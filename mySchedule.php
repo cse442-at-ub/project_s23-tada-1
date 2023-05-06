@@ -34,7 +34,6 @@ $types = $retListDisplay[2];
 <head>
 	<?php head("My Schedule") ?>
 	<link rel="stylesheet" type="text/css" href="css/mySchedule.css" />
-	<link rel="stylesheet" type="text/css" href="css/tada.css" />
 	<script src="js/mySchedule.js"></script>
 </head>
 
