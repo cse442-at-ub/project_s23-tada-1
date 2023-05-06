@@ -1,3 +1,36 @@
+.page-container {
+	background-color: rgba(246, 198, 134, 0.651);
+	border-radius: 20px;
+	padding: 15px;
+}
+
+.small-hide {
+	display: none;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+table,
+th,
+td {
+	border: 1px solid black;
+	border-radius: 10px;
+}
+
+td:nth-child(even),
+th:nth-child(even) {
+	background-color: #ffcccc;
+}
+
+.schedule-wrapper {
+	margin-top: 1em;
+}
+
+.schedule {
+	width: -webkit-fill-available;
+	width: -moz-available;
+}
+
 .schedule-table-top-buttons {
 	width: auto;
 	display: flex;
@@ -18,15 +51,6 @@
 	padding-right: 40px;
 }
 
-.small-hide {
-	display: none;
-}
-
-.page-container {
-	background-color: rgba(246, 198, 134, 0.651);
-	border-radius: 20px;
-	padding: 15px;
-}
 @media screen and (max-width: 500px) {
 	.small-hide {
 		display: inherit;
@@ -34,6 +58,9 @@
 
 	.schedule {
 		width: 450px;
+	}
+
+	.schedule-wrapper {
 		overflow-x: scroll;
 	}
 }

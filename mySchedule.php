@@ -36,19 +36,6 @@ $types = $retListDisplay[2];
 	<link rel="stylesheet" type="text/css" href="css/mySchedule.css" />
 	<link rel="stylesheet" type="text/css" href="css/tada.css" />
 	<script src="js/mySchedule.js"></script>
-	<style>
-		table,
-		th,
-		td {
-			border: 1px solid black;
-			border-radius: 10px;
-		}
-
-		td:nth-child(even),
-		th:nth-child(even) {
-			background-color: #ffcccc;
-		}
-	</style>
 </head>
 
 <body <?php echo "onload='selector(\"$selectedClass\", \"$selectedType\")'" ?>>
@@ -179,7 +166,7 @@ $types = $retListDisplay[2];
 		}
 
 		echo "<br>";
-
+		echo "<div class=\"schedule-wrapper\">";
 		echo "<table border='1' class=\"schedule\">";
 		echo "<tr>";
 		echo "<th>" . " " . "</th>";
@@ -302,6 +289,7 @@ $types = $retListDisplay[2];
 		}
 		echo "</tr>";
 		echo "</table>";
+		echo "</div>";
 
 		?>
 

@@ -7,8 +7,29 @@ $username = startSession();
 require('backend/connection.php');
 require('backend/head.php');
 require('backend/navbar.php');
+require('backend/indexHelper.php');
 
 console_log("Running on " . php_sapi_name());
+
+$appSubmit = "";
+if (!empty($_GET["application_name"]) and !empty($_GET["application_experience"]) and !empty($_GET["application_reason"])) {
+	$appSubmit =  <<<"EOT"
+			<div class="application-submission">
+				<h2>Congratulations Application Submitted</h2>
+			</div>
+			EOT;
+
+	$app_name = htmlspecialchars($_GET["application_name"]);
+	$app_experience = htmlspecialchars($_GET["application_experience"]);
+	$app_reason = htmlspecialchars($_GET["application_reason"]);
+	$app_id = $_GET["getId"];
+	settype($app_id, "integer");
+
+	$statement = $conn->prepare("INSERT INTO JobApp (id, Name, Experience, Reason) VALUES (?, ?, ?, ?)");
+	$statement->bind_param('isss', $app_id, $app_name, $app_experience, $app_reason);
+	$statement->execute();
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -20,15 +41,11 @@ console_log("Running on " . php_sapi_name());
 
 <body>
 	<?php navbar($username) ?>
+	<?php echo $appSubmit; ?>
 	<div class="page-header">
 		<h1>Teaching Assistant Developers Association</h1>
 		<div class="button-container">
-			<form method="GET" action="register.php">
-				<button type="submit" class="base-button green-button">Register</button>
-			</form>
-			<form method="GET" action="login.php">
-				<button type="submit" class="base-button green-button">Login</button>
-			</form>
+			<?php renderButtons($username); ?>
 		</div>
 		<div class="welcome-message">
 			<?php
@@ -39,57 +56,6 @@ console_log("Running on " . php_sapi_name());
 			?>
 		</div>
 	</div>
-
-	<!-- <?php
-	// Retrieving usernames
-	$result = mysqli_query($conn, "SELECT Username FROM UserData");
-	// mysqli_close($conn);
-
-	echo "<table border='1'>
-                <tr>
-		<th>Username</th>
-                </tr>";
-	while ($row = mysqli_fetch_assoc($result)) {
-		echo "<tr>";
-		echo "<td>" . $row["Username"] . "</td>";
-		echo "</tr>";
-	}
-	echo "</table>";
-	?> -->
-
-	<?php
-	if (!empty($_GET["application_name"]) and !empty($_GET["application_experience"]) and !empty($_GET["application_reason"])) {
-		echo "<h2>Congratulations Application Submitted</h2>";
-
-
-		$app_name = htmlspecialchars($_GET["application_name"]);
-		$app_experience = htmlspecialchars($_GET["application_experience"]);
-		$app_reason = htmlspecialchars($_GET["application_reason"]);
-		$app_id = $_GET["getId"];
-		settype($app_id, "integer");
-		// console_log(gettype($app_id));
-
-		//   Testing
-		// echo "Name: ";
-		// echo $app_name;
-		// echo "<br>";
-		// echo "Experience: ";
-		// echo $app_experience; 
-		// echo "<br>";
-		// echo "Why you want this job: ";
-		// echo $app_reason; 
-
-		// $query = "INSERT INTO JobApp (id, Name, Experience, Reason) VALUES (?, ?, ?, ?)";
-		$statement = $conn->prepare("INSERT INTO JobApp (id, Name, Experience, Reason) VALUES (?, ?, ?, ?)");
-		$statement->bind_param('isss', $app_id, $app_name, $app_experience, $app_reason);
-		$statement->execute();
-		if (mysqli_error($conn)) {
-			console_log("Error: " . mysqli_error($conn));
-		}
-		mysqli_close($conn);
-	}
-	?>
-	<br>
 </body>
 
 </html>
