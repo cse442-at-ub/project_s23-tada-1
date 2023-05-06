@@ -21,6 +21,12 @@
 .small-hide {
 	display: none;
 }
+
+.page-container {
+	background-color: rgba(246, 198, 134, 0.651);
+	border-radius: 20px;
+	padding: 15px;
+}
 @media screen and (max-width: 500px) {
 	.small-hide {
 		display: inherit;
