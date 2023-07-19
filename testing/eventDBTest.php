@@ -18,7 +18,7 @@ function helper($item, $action)
 
 function updateHelper($old, $new)
 {
-    $conn = mysqli_connect("oceanus.cse.buffalo.edu:3306", "khlam", "50338576", "cse442_2023_spring_team_p_db");
+    require('./backend/connection.php');
 
     $sql_query = "UPDATE ScheduleDatabase (Item) SET ('$new') WHERE (Item) = ('$old')";
 

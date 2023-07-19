@@ -8,9 +8,9 @@ if (php_sapi_name() == 'cli-server') {
 }
 
 return (object) array(
-    'db_address' => 'oceanus.cse.buffalo.edu:3306',
-    'db_username' => 'khlam',   // Thank you for sacrificing your user info, Kelly
-    'db_password' => '50338576',
-    'db_name' => 'cse442_2023_spring_team_p_db',
+    'db_address' => getenv("DB_ADDRESS"),
+    'db_username' => getenv("DB_USER"),
+    'db_password' => getenv("DB_PASS"),
+    'db_name' => getenv("DB_NAME"),
     'root_dir' => $root_dir,
 );
